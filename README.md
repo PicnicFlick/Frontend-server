@@ -1,2 +1,2 @@
-# Front-end-server
-프론트엔스 서버입니다
+# Frontend-server
+프론트엔드 서버입니다

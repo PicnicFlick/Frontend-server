@@ -24,7 +24,7 @@ width:100%;
 @media screen and (min-width:450px){
     width:375px;
 }
-height:44px;
+height:48px;
 //sticky는 width:100% 해당 안됨
 border-bottom: 2px solid #E6EAED;
 

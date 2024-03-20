@@ -1,16 +1,16 @@
+import Kakao from 'assets/images/kakao_login_medium_wide.png';
+export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_REST_API_KEY}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=code`;
 
 function KakaoLogin()
 {
-    const Rest_api_key='REST API KEY' //REST API KEY
-    const redirect_uri = 'http://localhost:3000/auth' //Redirect URI
-    // oauth 요청 URL
-    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`
     const handleLogin = ()=>{
-        window.location.href = kakaoURL
+        window.location.href = KAKAO_AUTH_URL;
     }
+    // https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code
+
     return(
     <>
-    <button onClick={handleLogin}>카카오 로그인</button>
+        <img onClick={handleLogin} src={Kakao} />
     </>
     )
 }

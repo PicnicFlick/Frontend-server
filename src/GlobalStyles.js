@@ -31,9 +31,7 @@ const GlobalStyles = createGlobalStyle`
     body{
         
         line-height: 1;
-        font-family: 'NanumSquareNeo';
-
-        //ThemeProvider의 props인 theme 활용법
+        font-family: 'Pretendard';
         
     }
     ol, ul{

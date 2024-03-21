@@ -15,7 +15,9 @@ function App() {
           <Route path="" element={<Home/>}/>
           <Route path="test" element={<Test/>}/>
           <Route path="my_page" element = {<MyPage/>}/>
-          <Route path= "/login/oauth2/callback/kakao" element={<LoginHandeler/>}/>
+          <Route path="/login/oauth2/callback/kakao" //redirect_url 
+          element={<LoginHandeler />} 
+          />     
         </Routes>
       </BrowserRouter>
     </div>

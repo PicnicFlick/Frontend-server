@@ -29,10 +29,12 @@ useEffect(() => {
       const refreshToken = res.data.result.refreshToken;
       console.log("accessToken : " + accessToken);
       console.log("refreshToken : " + refreshToken);
-      localStorage.getItem('token', accessToken);
+      localStorage.setItem('token', accessToken);//'get'이 아니라 'set',,,
+      localStorage.setItem('refreshtoken', refreshToken);
+
       alert('성공적으로 로그인 했습니다');
 
-      navigate("/test"); // 로그인 성공 후 메인화면으로 이동
+      navigate("/"); // 로그인 성공 후 메인화면으로 이동
 
       //localStorage.setItem("name", res.data.account.profile_nickname);
 

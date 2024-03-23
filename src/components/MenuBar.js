@@ -1,14 +1,29 @@
-import styled from "styled-components"
+import { useEffect,useState } from "react";
+import styled from "styled-components";
 import next from 'assets/images/Next.png';
 
 function MenuBar({left, setMenuLeft}){
+    const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        if(localStorage.getItem('token')==null){
+            setMessage('로그인이 필요합니다.');
+        }
+        else {
+            setMessage('김피크 님 반갑습니다.');
+        }
+    }, []);
+
     const onClick_closeMenu = () => {
         setMenuLeft('100%');
     }
+
     return(
         <MenuBlock left={left}>
             <Next src={next} onClick={onClick_closeMenu}/>
-            로그인이 필요합니다.
+           {
+            message && <Message>{message}</Message>
+           }
         </MenuBlock>
     )
 }
@@ -43,4 +58,12 @@ top:16px;
 width:8px;
 height:16px;
 cursor:pointer;
+
+`;
+
+export const Message = styled.p`
+font-size: 30px;
+color:green;
+padding:20px;
+text-align:center;
 `;

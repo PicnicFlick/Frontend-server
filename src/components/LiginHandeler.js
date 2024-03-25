@@ -25,12 +25,15 @@ useEffect(() => {
       });
       // 성공 처리
       console.log(res);
-      const accessToken = res.data.result.accessToken;
-      const refreshToken = res.data.result.refreshToken;
+      const accessToken = res.data.result.tokenInfoResponseDto.accessToken;
+      const refreshToken = res.data.result.tokenInfoResponseDto.refreshToken;
+      const name = res.data.result.name;
       console.log("accessToken : " + accessToken);
       console.log("refreshToken : " + refreshToken);
+      console.log("name : "+ res.data.result.name);
       localStorage.setItem('token', accessToken);//'get'이 아니라 'set',,,
       localStorage.setItem('refreshtoken', refreshToken);
+      localStorage.setItem('name', name);
 
       alert('성공적으로 로그인 했습니다');
 

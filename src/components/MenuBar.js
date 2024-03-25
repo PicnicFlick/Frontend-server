@@ -10,7 +10,7 @@ function MenuBar({left, setMenuLeft}){
             setMessage('로그인이 필요합니다.');
         }
         else {
-            setMessage('김피크 님 반갑습니다.');
+            setMessage(localStorage.getItem('name')+'님 반갑습니다.');
         }
     }, []);
 

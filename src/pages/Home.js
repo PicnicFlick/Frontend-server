@@ -48,27 +48,27 @@ function Home() {
                     <h2>반납하기</h2>
                 </QRBar>
 
-                {showPopUp &&
-                    (login
-                        ?
-                        <WarningBar>
-                            <X src={x} onClick={onClick_showPopUp} />
-                            현재&nbsp;
-                            <span>대여중</span>인 돗자리는&nbsp;
-                            <span>0개</span>입니다.
-                            <Next src={next} />
-                        </WarningBar>
-                        : <WarningBar>
-                            <X src={x} onClick={onClick_showPopUp} />
-                            서비스를 이용을 위해&nbsp;
-                            <span>
-                                로그인
-                            </span>
-                            을 해주세요
-                            <Next src={next} />
-                        </WarningBar>
-                    )
-                    // 중첩조건문할 때는 괄호 사용
+                {showPopUp&&
+                (localStorage.getItem('token')===null
+                    ?
+                    <WarningBar>
+                        <X src={x} onClick={onClick_showPopUp}/>
+                        서비스를 이용을 위해&nbsp;
+                         <span>
+                            로그인
+                        </span>
+                        을 해주세요
+                        <Next src={next} />
+                    </WarningBar>
+                    :  <WarningBar>
+                    <X src={x} onClick={onClick_showPopUp}/>
+                    현재&nbsp;
+                    <span>대여중</span>인 돗자리는&nbsp;
+                    <span>0개</span>입니다.
+                    <Next src={next} />
+                </WarningBar>
+                )
+                // 중첩조건문할 때는 괄호 사용
                 }
                 <MenuBar
                     left={menuLeft}

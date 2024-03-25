@@ -17,16 +17,18 @@ const TOPBARHEIGHT = 48;
 function Home() {
     const [login, setLogin] = useState(false);
     const [showPopUp, setShowPopUp] = useState(true);
+    const [showMenu, setShowMenu] = useState(false);
     const [menuLeft, setMenuLeft] = useState('100%');
 
-    const onClick_showPopUp = ()=>{
-        setShowPopUp(prev=>!prev);
-        console.log("showPopUp",showPopUp);
+    const onClick_showPopUp = () => {
+        setShowPopUp(prev => !prev);
+        console.log("showPopUp", showPopUp);
         console.log()
     }
 
     const onClick_menu = () => {
         setMenuLeft('40%');
+        setShowMenu(true);
     }
 
     return (
@@ -34,37 +36,44 @@ function Home() {
             <WidthBlock>
                 <TopBar>
                     <img style={{ width: '100px', height: '22px' }} loading="lazy" src={logo} />
-                    <img src={menu} onClick={onClick_menu}/>
+                    <img src={menu} onClick={onClick_menu} />
                 </TopBar>
-                <NaverMap height={VH - QRHEIGHT - TOPBARHEIGHT} />
+
+                <NaverMap
+                    showMenu={showMenu}
+                    height={VH - QRHEIGHT - TOPBARHEIGHT} />
+
                 <QRBar>
                     <h1>대여하기</h1>
                     <h2>반납하기</h2>
                 </QRBar>
 
-                {showPopUp&&
-                (login
-                    ?
-                    <WarningBar>
-                        <X src={x} onClick={onClick_showPopUp}/>
-                        현재&nbsp;
-                        <span>대여중</span>인 돗자리는&nbsp;
-                        <span>0개</span>입니다.
-                        <Next src={next} />
-                    </WarningBar>
-                    : <WarningBar>
-                        <X src={x} onClick={onClick_showPopUp}/>
-                        서비스를 이용을 위해&nbsp;
-                         <span>
-                            로그인
-                        </span>
-                        을 해주세요
-                        <Next src={next} />
-                    </WarningBar>
-                )
-                // 중첩조건문할 때는 괄호 사용
+                {showPopUp &&
+                    (login
+                        ?
+                        <WarningBar>
+                            <X src={x} onClick={onClick_showPopUp} />
+                            현재&nbsp;
+                            <span>대여중</span>인 돗자리는&nbsp;
+                            <span>0개</span>입니다.
+                            <Next src={next} />
+                        </WarningBar>
+                        : <WarningBar>
+                            <X src={x} onClick={onClick_showPopUp} />
+                            서비스를 이용을 위해&nbsp;
+                            <span>
+                                로그인
+                            </span>
+                            을 해주세요
+                            <Next src={next} />
+                        </WarningBar>
+                    )
+                    // 중첩조건문할 때는 괄호 사용
                 }
-                <MenuBar left={menuLeft} setMenuLeft={setMenuLeft}/>
+                <MenuBar
+                    left={menuLeft}
+                    setMenuLeft={setMenuLeft}
+                    setShowMenu={setShowMenu} />
             </WidthBlock>
         </Wrapper>
     )

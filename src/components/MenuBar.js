@@ -1,9 +1,10 @@
 import styled from "styled-components"
 import next from 'assets/images/Next.png';
 
-function MenuBar({left, setMenuLeft}){
+function MenuBar({left, setMenuLeft, setShowMenu}){
     const onClick_closeMenu = () => {
         setMenuLeft('100%');
+        setShowMenu(false);
     }
     return(
         <MenuBlock left={left}>

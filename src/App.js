@@ -7,9 +7,9 @@ import LoginHandeler from "./components/LiginHandeler";
 
 //대여하기 
 import LentalStart from "./pages/Lental/Lental_start";
-import Lental1 from "./pages/Lental/Lental_2";
-import Lental2 from "./pages/Lental/Lental_3";
-import Lental3 from "./pages/Lental/Lental_start";
+import Lental1 from "./pages/Lental/Lental_1";
+import Lental2 from "./pages/Lental/Lental_2";
+import Lental3 from "./pages/Lental/Lental_3";
 import LentalFinal from "./pages/Lental/Lental_final";
 
 

@@ -2,7 +2,7 @@ import { useEffect,useState } from "react";
 import styled from "styled-components";
 import next from 'assets/images/Next.png';
 
-function MenuBar({left, setMenuLeft}){
+function MenuBar({left, setMenuLeft, setShowMenu}){
     const [message, setMessage] = useState('');
 
     useEffect(() => {

@@ -1,34 +1,82 @@
 import { useEffect,useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import next from 'assets/images/Next.png';
+import axios from "axios";
 
 function MenuBar({left, setMenuLeft}){
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(localStorage.getItem('token')==null){
-            setMessage('로그인이 필요합니다.');
+            setMessage('로그인 하세요(click!)');
         }
         else {
             setMessage(localStorage.getItem('name')+'님 반갑습니다.');
         }
     }, []);
 
-    const onClick_closeMenu = () => {
+    const onClick_closeMenu = () => {//로그아웃 버튼 누르면 슬라이드 메뉴 자동으로 닫힘
         setMenuLeft('100%');
+    }
+
+    const navigateToTest = () => {// 비로그인 상태에만 '/test'로 페이지 이동
+        if (message === '로그인 하세요(click)') {
+          navigate('/test'); 
+        }
+      }; 
+
+
+    const onLogout = async () => {
+        try {
+            const response = await axios.post('http://localhost:3000/api/v1/user/logout',{
+                Authorization : localStorage.getItem('token'),
+                Refresh : localStorage.getItem('refreshtoken')
+            });
+            console.log(response.data);//로그아웃 성공 여부 판단용 콘솔
+            localStorage.removeItem('token');
+            localStorage.removeItem('name');
+            localStorage.removeItem('refreshtoken');
+            setMenuLeft('100%');//메뉴 닫기
+        } catch(error){
+            console.log('로그아웃 오류',error);
+        }
+    }   
+
+    const onClickLougout = () => {
+        const confirmLogout = window.confirm('정말 로그아웃 하시겠습니까?');
+        if (confirmLogout){
+            onLogout();
+        }
     }
 
     return(
         <MenuBlock left={left}>
             <Next src={next} onClick={onClick_closeMenu}/>
+            <Logout onClick={onClickLougout}>로그아웃</Logout>
            {
-            message && <Message>{message}</Message>
+            message && <Message onClick={navigateToTest}>{message}</Message>
            }
         </MenuBlock>
     )
 }
 
 export default MenuBar
+
+export const Logout=styled.div`
+width: 97px;
+height: 29px;
+flex-shrink: 0;
+color: #7B7575;
+text-align: center;
+font-family: "Big Shoulders Display";
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 24px; /* 200% */
+letter-spacing: -0.333px;
+`
 
 export const MenuBlock=styled.div`
 position:absolute;

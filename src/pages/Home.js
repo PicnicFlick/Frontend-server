@@ -97,7 +97,7 @@ position:relative;
 width:100%;
 min-height:100vh;
 @media screen and (min-width:450px){
-    width:375px;
+    width:390px;
 }
 
 border-left:2px solid #E6EAED;
@@ -128,13 +128,14 @@ img{
 
 
 export const QRBar = styled(Flex)`
+width:100%;
 position:absolute;
 bottom:0%;
 
 cursor:pointer;
 
 h1{
-width: 186px;
+width: 50%;
 height: ${QRHEIGHT}px;
 flex-shrink: 0;
 
@@ -154,7 +155,7 @@ align-items:center;
 }
 
 h2{
-width: 186px;
+width: 50%;
 height: ${QRHEIGHT}px;
 flex-shrink: 0;
 

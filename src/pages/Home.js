@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import NaverMap from "components/NaverMap";
 import { useEffect, useRef, useState } from "react";
 import MenuBar from "components/MenuBar";
+import { useNavigate } from "react-router-dom";
+
 
 const VH = window.innerHeight;
 const QRHEIGHT = 72;
@@ -19,6 +21,7 @@ function Home() {
     const [showPopUp, setShowPopUp] = useState(true);
     const [showMenu, setShowMenu] = useState(false);
     const [menuLeft, setMenuLeft] = useState('100%');
+    const navigate = useNavigate();
 
     const onClick_showPopUp = () => {
         setShowPopUp(prev => !prev);
@@ -29,6 +32,10 @@ function Home() {
     const onClick_menu = () => {
         setMenuLeft('40%');
         setShowMenu(true);
+    }
+
+    const goToLentalStart=()=>{
+        navigate('/lental/start');
     }
 
     return (
@@ -44,7 +51,7 @@ function Home() {
                     height={VH - QRHEIGHT - TOPBARHEIGHT} />
 
                 <QRBar>
-                    <h1>대여하기</h1>
+                    <h1 onClick={goToLentalStart}>대여하기</h1>
                     <h2>반납하기</h2>
                 </QRBar>
 

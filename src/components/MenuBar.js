@@ -7,6 +7,8 @@ import axios from "axios";
 function MenuBar({left, setMenuLeft, setShowMenu}){
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const Authorization = localStorage.getItem('token');
+    const Refresh = localStorage.getItem('refreshtoken');
 
     useEffect(() => {
         if(localStorage.getItem('token')==null){
@@ -30,10 +32,15 @@ function MenuBar({left, setMenuLeft, setShowMenu}){
 
 
     const onLogout = async () => {
+        console.log(Authorization);
+        console.log(Refresh);
+        
         try {
-            const response = await axios.post('http://localhost:3000/api/v1/user/logout',{
-                Authorization : localStorage.getItem('token'),
-                Refresh : localStorage.getItem('refreshtoken')
+            const response = await axios.post('http://13.124.95.110:8080/api/v1/user/logout',{},{
+                headers:{
+                    'Authorization': `${Authorization}`,
+                    'Refresh': `${Refresh}`
+                }
             });
             console.log(response.data);//로그아웃 성공 여부 판단용 콘솔
             localStorage.removeItem('token');

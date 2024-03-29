@@ -30,7 +30,6 @@ function Home() {
     }
 
     const onClick_menu = () => {
-        setMenuLeft('40%');
         setShowMenu(true);
     }
 
@@ -38,9 +37,26 @@ function Home() {
         navigate('/lental/start');
     }
 
+    useEffect(()=>{
+        if(showMenu)
+            setMenuLeft("40%");
+    },[showMenu]);
+
+
     return (
         <Wrapper>
             <WidthBlock>
+                {showMenu
+                &&
+                <div>
+                    <MenuBar
+                    left={menuLeft}
+                    setMenuLeft={setMenuLeft}
+                    setShowMenu={setShowMenu} />
+                    <BlackScreen/>
+                </div>
+                }
+                
                 <TopBar>
                     <img style={{ width: '100px', height: '22px' }} loading="lazy" src={logo} />
                     <img src={menu} onClick={onClick_menu} />
@@ -77,10 +93,6 @@ function Home() {
                 )
                 // 중첩조건문할 때는 괄호 사용
                 }
-                <MenuBar
-                    left={menuLeft}
-                    setMenuLeft={setMenuLeft}
-                    setShowMenu={setShowMenu} />
             </WidthBlock>
         </Wrapper>
     )
@@ -104,11 +116,10 @@ position:relative;
 width:100%;
 min-height:100vh;
 @media screen and (min-width:450px){
-    width:390px;
+    width:400px;
+    border-left:2px solid #E6EAED;
+    border-right:2px solid #E6EAED;
 }
-
-border-left:2px solid #E6EAED;
-border-right:2px solid #E6EAED;
 
 flex-direction:column;
 justify-content:flex-start;
@@ -233,3 +244,15 @@ height:12px;
 
 cursor:pointer;
 `;
+
+export const BlackScreen = styled.div`
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:100%;
+min-height:100vh;
+z-index:15;
+
+background-color:rgba(0,0,0,0.5);
+`

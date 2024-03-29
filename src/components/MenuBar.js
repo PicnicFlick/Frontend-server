@@ -19,7 +19,9 @@ function MenuBar({left, setMenuLeft, setShowMenu}){
 
     const onClick_closeMenu = () => {//로그아웃 버튼 누르면 슬라이드 메뉴 자동으로 닫힘
         setMenuLeft('100%');
-        setShowMenu(false);
+        setTimeout(() => {
+            setShowMenu(false);
+        }, 200);
     }
 
     const navigateToTest = () => {// 비로그인 상태에만 '/test'로 페이지 이동
@@ -91,6 +93,7 @@ height:100vh;
 
 background: #FFF;
 box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+//왼오(양수 왼, 음수 오) / 위아래(양수 아래, 음수 위) / blur 픽셀 등등
 
 z-index:20;
 

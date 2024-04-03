@@ -1,4 +1,5 @@
 import { Scanner } from "@yudiel/react-qr-scanner";
+import styled from "styled-components";
 
 function QrScanner() {
 

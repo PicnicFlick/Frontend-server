@@ -15,7 +15,7 @@ function QrScanner() {
         <Scanner
             onResult={(text, result) => {
                 console.log("text, result:", text, result);
-                navigate(text);
+                window.location.href(text);
             }
             }
             onError={(error) => {

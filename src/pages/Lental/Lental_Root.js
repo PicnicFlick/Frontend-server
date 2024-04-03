@@ -51,18 +51,19 @@ cursor:pointer;
 `;
 
 export const LentalMain = styled.div`
-  height:100vh;
-  background: #00D09E; /* 배경색 */
-  display: flex; /* Flexbox 레이아웃 사용 */
-  flex-direction: column; /* 자식 요소를 수직 방향으로 정렬 */
-  justify-content: space-evenly; /* 수직 방향 가운데 정렬 */
-  align-items: center; /* 수평 방향 가운데 정렬 */
-  margin: 0; /* 마진 제거 */
-  padding: 0; /* 패딩 제거 */
+min-height: 100vh;
+min-height: -webkit-fill-available; 
+background: #00D09E; /* 배경색 */
+display: flex; /* Flexbox 레이아웃 사용 */
+flex-direction: column; /* 자식 요소를 수직 방향으로 정렬 */
+justify-content: space-evenly; /* 수직 방향 가운데 정렬 */
+align-items: center; /* 수평 방향 가운데 정렬 */
+margin: 0; /* 마진 제거 */
+padding: 0; /* 패딩 제거 */
 
-  h1{
+    h1{
     font-size:16px;
-}
+    }
 `;
 
 export const FlowBox = styled(Flex)`

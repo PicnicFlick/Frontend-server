@@ -4,7 +4,7 @@ import styled from "styled-components";
 function QrScanner() {
 
     return (
-        <StyledScanner
+        <Scanner
             onResult={(text, result) => {
                 console.log("text, result:", text, result)
             }
@@ -18,8 +18,3 @@ function QrScanner() {
 };
 export default QrScanner;
 
-
-const StyledScanner = styled(Scanner)`
-width:500px;
-height:500px;
-`;

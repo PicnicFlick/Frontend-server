@@ -25,7 +25,7 @@ function Camera() {
             .catch(error => {
                 console.error('미디어 스트림을 얻는 데 실패했습니다:', error);
             });
-    })
+    },[videoRef])
 
     return (
         <Flex>

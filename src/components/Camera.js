@@ -11,11 +11,11 @@ function Camera() {
 
     useEffect(() => {
         navigator.mediaDevices.getUserMedia(
-            {
-                audio: true,
-                video: { facingMode: "environment" }
+            { 
+                audio: true, 
+                video: {facingMode:"environment"}
             }
-        )
+            )
             .then(stream => {
                 console.log("미디어스트림:", stream);
                 // 여기서 stream은 MediaStream 객체입니다.
@@ -25,7 +25,7 @@ function Camera() {
             .catch(error => {
                 console.error('미디어 스트림을 얻는 데 실패했습니다:', error);
             });
-    }, [videoRef])
+    },[videoRef])
 
     return (
         <Flex>
@@ -51,31 +51,3 @@ border:2px solid teal;
 
 
 
-// const getCamera = async () => {
-
-//     if (!navigator.mediaDevices) {
-//         throw new Error("mediaDevices API unavailable.");
-//     }
-
-//     const devices = await navigator.mediaDevices.enumerateDevices();
-//     const cameras = devices.filter(d => (d.kind === "videoinput"));
-//     return cameras[0];
-
-// };
-
-
-// const setupCamera = () => {
-//     getCamera()
-//         .then(stream => {
-//             console.log(stream); // 이제 camera 변수는 `Promise`가 아닌, 실제 카메라 정보를 담고 있습니다.
-
-//             console.log("videoRef:", videoRef.current);
-//             console.log("stream:", stream);
-//             // videoRef.current.srcObject = stream;
-//             // videoRef.current.play();
-//         })
-//         .catch(error => {
-//             console.log("카메라 접근에 실패했습니다.", error)
-//         })
-// }
-// useEffect(() => { setupCamera() }, [videoRef])

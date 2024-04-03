@@ -5,12 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function QrScanner() {
     const navigate=useNavigate();
-    // const [urlText,setUrlText]=useState("");
 
-    // useEffect(()=>{
-    //     if(urlText.length>0)
-    //         (urlText);
-    // },[urlText])
     return (
         <Scanner
             onResult={(text, result) => {

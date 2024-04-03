@@ -2,24 +2,22 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const goQR = () => {
 
+function Lental_Start() {
+  const navigate = useNavigate();
 
-}
-
-function LentalStart() {
   return (
     <LentalMain>
       <h1>대여하기 시작 화면입니다~!!!</h1>
-      <LentalButton onClick={goQR}>대여소 QR코드 인식하기</LentalButton>
+      <LentalButton onClick={() => { navigate("/lental/qr") }}>
+        대여소 QR코드 인식하기
+      </LentalButton>
     </LentalMain>
   );
 }
-export default LentalStart;
+export default Lental_Start;
 
 export const LentalMain = styled.div`
-  width: 100vw;  /* 뷰포트의 전체 너비 */
-  height: 100vh; /* 뷰포트의 전체 높이 */
   background: #00D09E; /* 배경색 */
   display: flex; /* Flexbox 레이아웃 사용 */
   flex-direction: column; /* 자식 요소를 수직 방향으로 정렬 */
@@ -36,5 +34,23 @@ export const LentalButton = styled.div`
   flex-shrink: 0;
   border-radius: 16px;
   background: #fff;
-  box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  color: var(--kakao-logo, #000);
+  font-family: Pretendard;
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 88.889% */
+  letter-spacing: -0.333px;
+
+
+  &:hover{
+    border:2px solid orange;
+  }
+
+  cursor:pointer;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
 `;

@@ -1,33 +1,39 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import flow from 'assets/images/LentalFlow.png';
+import flowFirst from 'assets/images/flowFirst.png';
+import { FlowBox, LentalMain } from "./Lental_Root";
+
 
 function Lental_Start() {
   const navigate = useNavigate();
 
   return (
     <LentalMain>
-      <h1>대여하기 시작 화면입니다~!!!</h1>
+      <FlowBox>
+        <FlowImg src={flow} />
+        <FlowFirst src={flowFirst} />
+      </FlowBox>
+      <h1>
+        대여하기 시작 화면입니다.
+        <br />
+        대여소에 부착되어있는 QR코드를 촬영해주세요.
+      </h1>
       <LentalButton onClick={() => { navigate("/lental/qr") }}>
-        대여소 QR코드 인식하기
+        QR코드 촬영하기
       </LentalButton>
     </LentalMain>
   );
 }
 export default Lental_Start;
 
-export const LentalMain = styled.div`
-  background: #00D09E; /* 배경색 */
-  display: flex; /* Flexbox 레이아웃 사용 */
-  flex-direction: column; /* 자식 요소를 수직 방향으로 정렬 */
-  justify-content: center; /* 수직 방향 가운데 정렬 */
-  align-items: center; /* 수평 방향 가운데 정렬 */
-  margin: 0; /* 마진 제거 */
-  padding: 0; /* 패딩 제거 */
-`;
-
 
 export const LentalButton = styled.div`
+  position:absolute;
+  left:50%;
+  bottom:10%;
+  transform:translateX(-50%);
   width: 342px;
   height: 64px;
   flex-shrink: 0;
@@ -42,14 +48,25 @@ export const LentalButton = styled.div`
   line-height: 24px; /* 88.889% */
   letter-spacing: -0.333px;
 
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
-  &:hover{
-    border:2px solid orange;
-  }
 
   cursor:pointer;
 
   display:flex;
   justify-content:center;
   align-items:center;
+`;
+
+export const FlowImg = styled.img`
+width:220px;
+height:50px;
+`;
+export const FlowFirst = styled.img`
+position:absolute;
+left:-15px;
+bottom:0;
+
+width:80px;
+height:21px;
 `;

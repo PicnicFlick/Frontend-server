@@ -34,6 +34,7 @@ function Camera() {
                 autoPlay="true"
                 id="video"
                 muted="true"
+                playsinline
             />
         </Flex>
 

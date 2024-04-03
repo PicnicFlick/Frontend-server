@@ -1,6 +1,7 @@
 import Camera from "components/Camera"
 import KakaoLogin from "../components/KakaoLogin"
 import { Flex } from "./Home"
+import QrReader from "components/QrReader"
 
 function Test(){
     return(
@@ -10,7 +11,7 @@ function Test(){
                 <KakaoLogin/>
             </Flex>
             <br/>
-            <Camera/>
+            <QrReader/>
         </div>
     )
 

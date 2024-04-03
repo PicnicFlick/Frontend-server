@@ -10,7 +10,12 @@ function Camera() {
 
 
     useEffect(() => {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+        navigator.mediaDevices.getUserMedia(
+            { 
+                audio: true, 
+                video: {facingMode:"environment"}
+            }
+            )
             .then(stream => {
                 console.log("미디어스트림:", stream);
                 // 여기서 stream은 MediaStream 객체입니다.

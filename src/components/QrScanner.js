@@ -1,15 +1,24 @@
 import { Scanner } from "@yudiel/react-qr-scanner";
 
-function QrScanner(){
+function QrScanner() {
 
-return (
- <div>
-    <Scanner
-            onResult={(text, result) => console.log(text, result)}
-            onError={(error) => console.log(error?.message)}
-    />
-    "카메라 실행중"
- </div>
-);
+    return (
+        <StyledScanner
+            onResult={(text, result) => {
+                console.log("text, result:", text, result)
+            }
+            }
+            onError={(error) => {
+                console.log(error?.message)
+            }
+            }
+        />
+    );
 };
 export default QrScanner;
+
+
+const StyledScanner = styled(Scanner)`
+width:500px;
+height:500px;
+`;

@@ -1,8 +1,7 @@
-import Camera from "components/Camera"
 import KakaoLogin from "../components/KakaoLogin"
-import { Flex } from "./Home"
-import QrReader from "components/QrReader"
 import QrScanner from "components/QrScanner"
+
+import { Flex } from "./Home"
 
 function Test(){
     return(
@@ -11,11 +10,6 @@ function Test(){
                 카카오 로그인 테스트 화면 입니다~!!!
                 <KakaoLogin/>
             </Flex>
-            {/* <br/>
-            <Camera/>
-            <br/>
-            <QrReader/>
-            */}
             <br/>
             <QrScanner/>
         </div>

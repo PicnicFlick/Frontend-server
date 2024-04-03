@@ -1,4 +1,3 @@
-import QrScanner from "components/QrScanner"
 import { WidthBlock, Wrapper } from "pages/Home"
 import styled from "styled-components";
 import bkBtn from 'assets/images/BackButton2.png';

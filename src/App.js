@@ -10,9 +10,9 @@ import Lental_Root from "pages/Lental/Lental_Root";
 import Lental_1 from "./pages/Lental/Lental_1";
 import Lental_2 from "./pages/Lental/Lental_2";
 import Lental_3 from "./pages/Lental/Lental_3";
-import Lental_Final from "./pages/Lental/Lental_Final";
-import Lental_Start from "./pages/Lental/Lental_Start";
 import Lental_QR from "pages/Lental/Lental_QR";
+import Lental_Start from "pages/Lental/Lental_Start";
+import Lental_Final from "pages/Lental/Lental_Final";
 
 
 

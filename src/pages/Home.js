@@ -108,15 +108,20 @@ align-items:center;
 
 export const Wrapper = styled(Flex)`
 width:100vw;
-height: 100vh;
-min-height: -webkit-fill-available; 
+min-height: 100vh;
+@media screen and (max-width:450px){
+    min-height: -webkit-fill-available; 
+}
 `;
 
 export const WidthBlock = styled(Flex)`
 position:relative;
 width:100%;
 min-height: 100vh;
-min-height: -webkit-fill-available; 
+
+@media screen and (max-width:450px){
+    min-height: -webkit-fill-available; 
+}
 @media screen and (min-width:450px){
     width:400px;
     border-left:2px solid #E6EAED;

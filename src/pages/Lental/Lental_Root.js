@@ -51,8 +51,12 @@ cursor:pointer;
 `;
 
 export const LentalMain = styled.div`
-height: 100vh;
-min-height: -webkit-fill-available; 
+min-height: 100vh;
+
+@media screen and (max-width:450px){
+    min-height: -webkit-fill-available; 
+}
+
 background: #00D09E; /* 배경색 */
 display: flex; /* Flexbox 레이아웃 사용 */
 flex-direction: column; /* 자식 요소를 수직 방향으로 정렬 */

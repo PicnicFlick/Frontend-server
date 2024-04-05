@@ -97,6 +97,7 @@ transition: left 0.2s ease-in-out;
 
 width:60%;
 height:100vh;
+min-height: -webkit-fill-available; 
 
 background: #FFF;
 box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;

@@ -51,7 +51,7 @@ cursor:pointer;
 `;
 
 export const LentalMain = styled.div`
-min-height: 100vh;
+height: 100vh;
 min-height: -webkit-fill-available; 
 background: #00D09E; /* 배경색 */
 display: flex; /* Flexbox 레이아웃 사용 */

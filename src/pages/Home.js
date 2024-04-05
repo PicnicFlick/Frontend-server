@@ -108,7 +108,7 @@ align-items:center;
 
 export const Wrapper = styled(Flex)`
 width:100vw;
-min-height: 100vh;
+height: 100vh;
 min-height: -webkit-fill-available; 
 `;
 

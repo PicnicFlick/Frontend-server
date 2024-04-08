@@ -1,14 +1,17 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-//@import url('https://webfontworld.github.io/NanumSquareNeo/NanumSquareNeo.css');
-/* @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
+@font-face {
+    font-family: 'BMJua';
+    font-weight: normal;
     font-style: normal;
-} */
-    // 적용시킬 css 입력
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/BMJua/BMJua.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/BMJua/BMJua.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/BMJua/BMJua.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/BMJua/BMJua.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/BMJua/BMJua.ttf') format("truetype");
+    font-display: swap;
+} 
     *{
         box-sizing: border-box;
     }

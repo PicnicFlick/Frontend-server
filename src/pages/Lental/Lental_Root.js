@@ -64,19 +64,68 @@ justify-content: space-evenly; /* 수직 방향 가운데 정렬 */
 align-items: center; /* 수평 방향 가운데 정렬 */
 margin: 0; /* 마진 제거 */
 padding: 0; /* 패딩 제거 */
-
-    h1{
-    font-size:16px;
-    }
 `;
 
+
 export const FlowBox = styled(Flex)`
+position:relative;
+height:112px;
+`;
+export const FlowImg = styled.img`
+width:220px;
+height:50px;
+`;
+export const FlowText = styled.p`
 position:absolute;
-top:10%;
+
+color: #FFF;
+text-align: center;
+font-family: BmJua;
+font-size: 22px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 109.091% */
+letter-spacing: -0.333px;
+`;
+
+export const LentalButton = styled.div`
+  position:absolute;
+  left:50%;
+  bottom:10%;
+  transform:translateX(-50%);
+  width: 342px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: #fff;
+
+  color: var(--kakao-logo, #000);
+  font-family: Pretendard;
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 88.889% */
+  letter-spacing: -0.333px;
+
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+
+  cursor:pointer;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+`;
+
+export const MainBoard = styled(Flex)`
+position:absolute;
+
+min-height:60vh;
+top:40px;
 left:50%;
 transform:translateX(-50%);
 
-height:112px;
-
+display:flex;
 flex-direction:column;
+justify-content:space-between;
 `;

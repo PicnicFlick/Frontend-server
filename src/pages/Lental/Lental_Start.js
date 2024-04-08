@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import flow from 'assets/images/LentalFlow.png';
 import { FlowBox, FlowImg, FlowText, LentalButton, LentalMain, MainBoard } from "./Lental_Root";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 
 function Lental_Start() {
@@ -29,12 +29,30 @@ function Lental_Start() {
 }
 export default Lental_Start;
 
+
+export const fadein= keyframes`
+    from {
+        top:45%;
+        opacity: 0;
+    }
+    to {
+        top:50%;
+        opacity: 1;
+    }
+
+`;
+
 const FlowStart = styled(FlowText)`
 left:-8%;
 bottom:-2px;
 `;
 
 const StartText = styled.div`
+animation: ${fadein} 1s;
+  -moz-animation: ${fadein} 1s; /* Firefox */
+  -webkit-animation: ${fadein} 1s; /* Safari and Chrome */
+  -o-animation: ${fadein} 1s; /* Opera */
+
 position:absolute;
 top:50%;
 left:50%;

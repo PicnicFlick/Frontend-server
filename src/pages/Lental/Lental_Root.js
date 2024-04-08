@@ -1,5 +1,5 @@
 import { Flex, WidthBlock, Wrapper } from "pages/Home"
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import bkBtn from 'assets/images/BackButton2.png';
 
 import { Outlet, useNavigate } from "react-router-dom";
@@ -19,6 +19,23 @@ function Lental_Root() {
 }
 
 export default Lental_Root
+
+
+
+
+export const fadein_btn = keyframes`
+    0% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+
+`;
+
 
 export const WidthBlock_Lental = styled(WidthBlock)`
 position:relative;
@@ -88,6 +105,7 @@ line-height: 24px; /* 109.091% */
 letter-spacing: -0.333px;
 `;
 
+
 export const LentalButton = styled.div`
   position:absolute;
   left:50%;
@@ -99,11 +117,13 @@ export const LentalButton = styled.div`
   border-radius: 16px;
   background: #fff;
 
+  animation:${fadein_btn} 1s;
+
   color: var(--kakao-logo, #000);
   font-family: Pretendard;
   font-size: 27px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 24px; /* 88.889% */
   letter-spacing: -0.333px;
 
@@ -119,6 +139,8 @@ export const LentalButton = styled.div`
 
 export const MainBoard = styled(Flex)`
 position:absolute;
+
+
 
 min-height:60vh;
 top:40px;

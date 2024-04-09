@@ -13,6 +13,9 @@ import Lental_QR from "pages/Lental/Lental_QR";
 import Lental_Start from "pages/Lental/Lental_Start";
 import Lental_Final from "pages/Lental/Lental_Final";
 
+//회원관련
+import Login from 'pages/Login';
+
 
 
 
@@ -23,7 +26,10 @@ function App() {
         <GlobalStyles/>
         <Routes>
           <Route path="" element={<Home/>}/>
+
           <Route path="test" element={<Test/>}/>
+
+          <Route path ="login" element={<Login/>}/>
           <Route path="my_page" element = {<MyPage/>}/>
           <Route path="/login/oauth2/callback/kakao" element={<LoginHandeler />} /> 
           {/* redirect_url*/}

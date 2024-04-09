@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
-const LoginHandeler = (props) => {
+function LoginHandeler(props){
 // 인가코드 백으로 보내는 작업 하는곳
 const navigate = useNavigate();
   const code = new URL(window.location.href).searchParams.get("code");
@@ -13,7 +13,7 @@ console.log(code);
 useEffect(() => {
   const kakaoLogin = async () => {
     if (!code) return;
-    console.log("^^!!");
+    console.log("code ^^!!", code);
     try {
       const res = await axios({
         method: "POST",
@@ -31,15 +31,15 @@ useEffect(() => {
       console.log("accessToken : " + accessToken);
       console.log("refreshToken : " + refreshToken);
       console.log("name : "+ res.data.result.name);
-      localStorage.setItem('token', accessToken);//'get'이 아니라 'set',,,
-      localStorage.setItem('refreshtoken', refreshToken);
-      localStorage.setItem('name', name);
+      sessionStorage.setItem('token', accessToken);//'get'이 아니라 'set',,,
+      sessionStorage.setItem('refreshtoken', refreshToken);
+      sessionStorage.setItem('name', name);
 
       alert('성공적으로 로그인 했습니다');
 
       navigate("/"); // 로그인 성공 후 메인화면으로 이동
 
-      //localStorage.setItem("name", res.data.account.profile_nickname);
+      //sessionStorage.setItem("name", res.data.account.profile_nickname);
 
     } catch (error) {
       // 오류 처리

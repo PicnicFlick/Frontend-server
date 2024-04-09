@@ -3,7 +3,7 @@ import Test from "./pages/Test";
 import Home from "./pages/Home";
 import MyPage from "./pages/Menu/MyPage";
 import GlobalStyles from "./GlobalStyles";
-import LoginHandeler from "./components/LiginHandeler";
+import LoginHandeler from "./components/LoginHandeler";
 
 //대여하기 
 import Lental_Root from "pages/Lental/Lental_Root";

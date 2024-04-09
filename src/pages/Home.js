@@ -72,7 +72,7 @@ function Home() {
                 </QRBar>
 
                 {showPopUp&&
-                (localStorage.getItem('token')===null
+                (sessionStorage.getItem('token')===null
                     ?
                     <WarningBar>
                         <X src={x} onClick={onClick_showPopUp}/>

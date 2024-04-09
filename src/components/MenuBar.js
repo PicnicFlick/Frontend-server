@@ -45,7 +45,7 @@ function MenuBar({left, setMenuLeft, setShowMenu}){
         sessionStorage.removeItem('name');
         sessionStorage.removeItem('refreshtoken');
 
-        location.reload(true);
+        window.location.reload(true);
     }   
 
     const onClickLogout = () => {

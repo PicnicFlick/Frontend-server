@@ -7,15 +7,15 @@ import axios from "axios";
 function MenuBar({left, setMenuLeft, setShowMenu}){
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
-    const Authorization = localStorage.getItem('token');
-    const Refresh = localStorage.getItem('refreshtoken');
+    const Authorization = sessionStorage.getItem('token');
+    const Refresh = sessionStorage.getItem('refreshtoken');
 
     useEffect(() => {
-        if(localStorage.getItem('token')==null){
+        if(sessionStorage.getItem('token')==null){
             setMessage('로그인 하세요(click!)');
         }
         else {
-            setMessage(localStorage.getItem('name')+'님 반갑습니다.');
+            setMessage(sessionStorage.getItem('name')+'님 반갑습니다.');
         }
     }, []);
 
@@ -45,9 +45,9 @@ function MenuBar({left, setMenuLeft, setShowMenu}){
                 }
             });
             console.log(response.data);//로그아웃 성공 여부 판단용 콘솔
-            localStorage.removeItem('token');
-            localStorage.removeItem('name');
-            localStorage.removeItem('refreshtoken');
+            sessionStorage.removeItem('token');
+            sessionStorage.removeItem('name');
+            sessionStorage.removeItem('refreshtoken');
             setMenuLeft('100%');//메뉴 닫기
         } catch(error){
             console.log('로그아웃 오류',error);

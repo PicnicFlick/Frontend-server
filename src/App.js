@@ -9,7 +9,6 @@ import LoginHandeler from "./components/LiginHandeler";
 import Lental_Root from "pages/Lental/Lental_Root";
 import Lental_1 from "./pages/Lental/Lental_1";
 import Lental_2 from "./pages/Lental/Lental_2";
-import Lental_3 from "./pages/Lental/Lental_3";
 import Lental_QR from "pages/Lental/Lental_QR";
 import Lental_Start from "pages/Lental/Lental_Start";
 import Lental_Final from "pages/Lental/Lental_Final";
@@ -34,7 +33,6 @@ function App() {
             <Route path="qr" element={<Lental_QR/>}/>
             <Route path="1" element={<Lental_1/>}/>
             <Route path="2" element={<Lental_2/>}/>
-            <Route path="3" element={<Lental_3/>}/>
             <Route path="final" element={<Lental_Final/>}/>
           </Route>
 

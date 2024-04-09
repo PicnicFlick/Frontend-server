@@ -54,7 +54,7 @@ function MenuBar({left, setMenuLeft, setShowMenu}){
         }
     }   
 
-    const onClickLougout = () => {
+    const onClickLogout = () => {
         const confirmLogout = window.confirm('정말 로그아웃 하시겠습니까?');
         if (confirmLogout){
             onLogout();
@@ -64,7 +64,7 @@ function MenuBar({left, setMenuLeft, setShowMenu}){
     return(
         <MenuBlock left={left}>
             <Next src={next} onClick={onClick_closeMenu}/>
-            <Logout onClick={onClickLougout}>로그아웃</Logout>
+            <Logout onClick={onClickLogout}>로그아웃</Logout>
            {
             message && <Message onClick={navigateToTest}>{message}</Message>
            }
@@ -80,7 +80,7 @@ height: 29px;
 flex-shrink: 0;
 color: #7B7575;
 text-align: center;
-font-family: "Big Shoulders Display";
+font-family: Pretendard;
 font-size: 12px;
 font-style: normal;
 font-weight: 500;

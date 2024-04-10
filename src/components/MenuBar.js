@@ -11,8 +11,8 @@ function MenuBar({left, setMenuLeft, setShowMenu}){
     const Authorization = sessionStorage.getItem('token');
     const Refresh = sessionStorage.getItem('refreshtoken');
 
-    const email="asd1873@naver.com";
-    const userName = "노준호";
+    const email=sessionStorage.getItem('email')
+    const name = sessionStorage.getItem('name');
 
     useEffect(() => {
         if(sessionStorage.getItem('token')==null){
@@ -58,7 +58,7 @@ function MenuBar({left, setMenuLeft, setShowMenu}){
     return(
         <MenuBlock left={left}>
             <Next src={next} onClick={onClick_closeMenu}/>
-            {sessionStorage.getItem('token')==!null
+            {sessionStorage.getItem('token')==null
             ?
             <BoardByLogin>
                 <GoToLogin onClick={()=>navigate('/login')}>
@@ -78,7 +78,7 @@ function MenuBar({left, setMenuLeft, setShowMenu}){
                     <img src={profile}/>
                     <h2>{email}</h2>
                     <h1>
-                        {userName} <span>님</span>
+                        {name} <span>님</span>
                     </h1>
                 </ProfileBoard>
             </BoardByLogin>

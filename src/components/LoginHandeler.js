@@ -25,15 +25,19 @@ useEffect(() => {
       });
       // 성공 처리
       console.log(res);
+
       const accessToken = res.data.result.tokenInfoResponseDto.accessToken;
       const refreshToken = res.data.result.tokenInfoResponseDto.refreshToken;
       const name = res.data.result.name;
+      const email = res.data.result.email;
+
       console.log("accessToken : " + accessToken);
       console.log("refreshToken : " + refreshToken);
-      console.log("name : "+ res.data.result.name);
+      console.log("name, email : ", name, email);
       sessionStorage.setItem('token', accessToken);//'get'이 아니라 'set',,,
       sessionStorage.setItem('refreshtoken', refreshToken);
       sessionStorage.setItem('name', name);
+      sessionStorage.setItem('email', email);
 
       alert('성공적으로 로그인 했습니다');
 

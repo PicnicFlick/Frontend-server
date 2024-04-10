@@ -15,6 +15,7 @@ import Lental_Final from "pages/Lental/Lental_Final";
 
 //회원관련
 import Login from 'pages/Login';
+import Lental_3 from "pages/Lental/Lental_3";
 
 
 
@@ -39,6 +40,7 @@ function App() {
             <Route path="qr" element={<Lental_QR/>}/>
             <Route path="1" element={<Lental_1/>}/>
             <Route path="2" element={<Lental_2/>}/>
+            <Route path="3" element={<Lental_3/>}/>
             <Route path="final" element={<Lental_Final/>}/>
           </Route>
 

@@ -70,7 +70,7 @@ function Lental_2(){
                         </EntireSpent>
                 </PayBox>
             </MainBoard>
-            <LentalButton onClick={()=>navigate('/lental/final')}>
+            <LentalButton onClick={()=>navigate('/lental/3')}>
                 결제하러 가기
             </LentalButton>
         </LentalMain>

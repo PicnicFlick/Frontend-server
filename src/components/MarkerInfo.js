@@ -45,7 +45,11 @@ to{
 const MarkerInfoBoard = styled.div`
 position:absolute;
 width:100%;
-height:100vh;
+min-height: 100vh;
+
+@media screen and (max-width:450px){
+    min-height: -webkit-fill-available; 
+}
 `;
 
 const UnderBar = styled.div`

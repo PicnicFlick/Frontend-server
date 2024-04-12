@@ -19,7 +19,7 @@
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.8",
     "web-vitals": "^2.1.4"
-  },
+    },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -43,5 +43,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://kapi.kakao.com"
+
 }

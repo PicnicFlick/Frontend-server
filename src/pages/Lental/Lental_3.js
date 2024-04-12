@@ -3,10 +3,23 @@ import { FlowBox, FlowImg, FlowText, LentalButton, LentalMain, MainBoard } from 
 
 import lentalFlow2 from 'assets/images/LentalFlow2.png';
 import styled, { keyframes } from "styled-components";
+import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Lental_3() {
     const navigate = useNavigate();
+    const location = useLocation();
+    useEffect(() => {
+        // 컴포넌트가 마운트 될 때 실행되는 함수
+        const query = new URLSearchParams(location.search);
+        const pgToken = query.get('pg_token');
+        console.log("Payment Data:", pgToken);
+
+        // 필요하다면 최종 페이지로 이동하거나 다른 작업을 수행합니다.
+        // navigate('/lental/final');
+
+    }, [location]);
 
 
 

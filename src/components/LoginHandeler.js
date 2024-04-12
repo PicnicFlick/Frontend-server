@@ -65,7 +65,5 @@ useEffect(() => {
     </div>
   );
 };
-
-
     
 export default LoginHandeler;

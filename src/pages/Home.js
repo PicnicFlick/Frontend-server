@@ -184,6 +184,7 @@ export const QRBar = styled(Flex)`
 width:100%;
 position:absolute;
 bottom:0%;
+z-index:10;
 
 cursor:pointer;
 

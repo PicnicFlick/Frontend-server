@@ -10,18 +10,36 @@ import NaverMap from "components/NaverMap";
 import { useEffect, useRef, useState } from "react";
 import MenuBar from "components/MenuBar";
 import { useNavigate } from "react-router-dom";
+import MarkerInfo from "components/MarkerInfo";
 
 
-const VH = window.innerHeight;
-const QRHEIGHT = 72;
+export const VH = window.innerHeight;
+export const QRHEIGHT = 72;
 const TOPBARHEIGHT = 48;
 
 function Home() {
     const [login, setLogin] = useState(false);
     const [showPopUp, setShowPopUp] = useState(true);
     const [showMenu, setShowMenu] = useState(false);
+    const [showInfo,setShowInfo] = useState(false);
+    const [infoIndex, setInfoIndex]=useState();
     const [menuLeft, setMenuLeft] = useState('100%');
     const navigate = useNavigate();
+
+    const placeInfos = [
+        {
+            name:'CU 한강르네상스뚝섬점 옆',
+            cnt:20
+        },
+        {
+            name:'X게임장 옆',
+            cnt:14
+        },
+        {
+            name:'강변북로 한가운데',
+            cnt:14
+        }
+    ]
 
     const onClick_showPopUp = () => {
         setShowPopUp(prev => !prev);
@@ -64,6 +82,9 @@ function Home() {
 
                 <NaverMap
                     showMenu={showMenu}
+                    setInfoIndex={setInfoIndex}
+                    showInfo={showInfo}
+                    setShowInfo={setShowInfo}
                     height={VH - QRHEIGHT - TOPBARHEIGHT} />
 
                 <QRBar>
@@ -93,6 +114,13 @@ function Home() {
                 )
                 // 중첩조건문할 때는 괄호 사용
                 }
+                {showInfo 
+                &&
+                <MarkerInfo 
+                placeInfo={placeInfos[infoIndex]}
+                setShowInfo={setShowInfo}/>
+                }
+            
             </WidthBlock>
         </Wrapper>
     )

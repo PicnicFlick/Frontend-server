@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import marker from 'assets/images/Marker.png';
+import marker from 'assets/images/Marker.svg';
 
 function NaverMap({
   height, 
@@ -17,7 +17,6 @@ function NaverMap({
   var markers=[];
   const markerStyle= "width:20px; height:20px; background-color:red; background-image:'../assets/images/Marker.png';"
   
-
 
   useEffect(() => {
     const { naver } = window;
@@ -36,24 +35,38 @@ function NaverMap({
       markers[0] = new naver.maps.Marker({
         position: location,
         map: map,
-      //   icon: {
-      //     url: '/Users/noh/Desktop/JH/WorkSpace/Project/picnic_flick/src/assets/images/Marker.png', //50, 68 크기의 원본 이미지
-      //     size: new naver.maps.Size(25, 34),
-      //     scaledSize: new naver.maps.Size(25, 34),
-      //     origin: new naver.maps.Point(0, 0),
-      //     anchor: new naver.maps.Point(12, 34)
-      // }
+        icon: {
+          url: marker, //50, 68 크기의 원본 이미지
+          size: new naver.maps.Size(24, 36),
+          scaledSize: new naver.maps.Size(24, 36),
+          origin: new naver.maps.Point(0, 0),
+          anchor: new naver.maps.Point(12, 34)
+      }
       });
 
       markers[1] = new naver.maps.Marker({
-        position: new naver.maps.LatLng(37.5303507, 127.0699562),
+        position: new naver.maps.LatLng(37.5300000, 127.0690000),
         map: map,
+        icon: {
+          url: marker, //50, 68 크기의 원본 이미지
+          size: new naver.maps.Size(24, 36),
+          scaledSize: new naver.maps.Size(24, 36),
+          origin: new naver.maps.Point(0, 0),
+          anchor: new naver.maps.Point(12, 34)
+      }
         
       });
 
       markers[2] = new naver.maps.Marker({
-        position: new naver.maps.LatLng(37.5303507, 127.0709562),
+        position: new naver.maps.LatLng(37.5290000, 127.0720000),
         map: map,
+        icon: {
+          url: marker, //50, 68 크기의 원본 이미지
+          size: new naver.maps.Size(24, 36),
+          scaledSize: new naver.maps.Size(24, 36),
+          origin: new naver.maps.Point(0, 0),
+          anchor: new naver.maps.Point(12, 34)
+      }
         
       });
 

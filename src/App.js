@@ -17,6 +17,10 @@ import Lental_Final from "pages/Lental/Lental_Final";
 import Login from 'pages/Login';
 import Lental_3 from "pages/Lental/Lental_3";
 import PaymentLoading from "pages/Lental/PaymentLoading";
+import MyPage_History from "pages/Menu/MyPage_History";
+import MyPage_History_Detail from "pages/Menu/MyPage_History_Detail";
+import MyPage_Revise from "pages/Menu/MyPage_Revise";
+
 
 
 
@@ -32,8 +36,12 @@ function App() {
           <Route path="test" element={<Test/>}/>
 
           <Route path ="login" element={<Login/>}/>
-          <Route path="my_page" element = {<MyPage/>}/>
           <Route path="/login/oauth2/callback/kakao" element={<LoginHandeler />} /> 
+          <Route path="my_page" element = {<MyPage/>}/>
+          <Route path="my_page/revise" element={<MyPage_Revise/>}/>
+          <Route path="my_page/history" element={<MyPage_History/>}/>
+          <Route path="my_page/history/:id" element={<MyPage_History_Detail/>}/>
+
           {/* redirect_url*/}
 
           <Route path="lental" element ={<Lental_Root/>}>

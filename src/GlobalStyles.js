@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
@@ -34,7 +35,8 @@ const GlobalStyles = createGlobalStyle`
     body{
         
         line-height: 1;
-        font-family: 'Pretendard';
+        font-family: 'Pretendard-Variable';
+        overscroll-behavior: none; //스크롤 체이닝 방지
         
     }
     ol, ul{

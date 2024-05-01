@@ -140,6 +140,7 @@ min-height: 100vh;
 @media screen and (max-width:450px){
     min-height: -webkit-fill-available; 
 }
+overflow:hidden;
 `;
 
 export const WidthBlock = styled(Flex)`
@@ -158,6 +159,8 @@ min-height: 100vh;
 
 flex-direction:column;
 justify-content:flex-start;
+
+overflow:hidden;
 `;
 
 export const TopBar = styled(Flex)`

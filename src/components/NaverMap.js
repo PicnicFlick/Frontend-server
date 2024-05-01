@@ -11,8 +11,6 @@ function NaverMap({
   setInfoIndex
 }){
   const mapRef = useRef(null);
-  const lat = 37.5293507;
-  const lng = 127.0699562;
 
   var markers=[];
   const markerStyle= "width:20px; height:20px; background-color:red; background-image:'../assets/images/Marker.png';"
@@ -21,7 +19,7 @@ function NaverMap({
   useEffect(() => {
     const { naver } = window;
     if (mapRef.current && naver) {
-      const location = new naver.maps.LatLng(lat, lng);
+      const location = new naver.maps.LatLng(37.5293507, 127.0699562);
 
       const map = new naver.maps.Map(mapRef.current, {
         center: location,

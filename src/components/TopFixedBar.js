@@ -22,21 +22,24 @@ position:fixed;
 
 width:100%;
 @media screen and (min-width:450px){
-    width:375px;
+    width:400px;
+    border-left:2px solid #E6EAED;
+    border-right:2px solid #E6EAED;
 }
 height:48px;
 //sticky는 width:100% 해당 안됨
 border-bottom: 2px solid #E6EAED;
 
+background-color:white;
+z-index:10;
 h1{
 margin-top:2px;
 
 color: var(--kakao-logo, #000);
 text-align: center;
-font-family: "Big Shoulders Display";
 font-size: 20px;
 font-style: normal;
-font-weight: 500;
+font-weight: 400;
 }
 `;
 
@@ -47,4 +50,13 @@ top:50%;
 transform:translateY(-50%);
 
 cursor:pointer;
+`;
+
+
+export const TopFixedBar_Blank = styled(Flex)`
+width:100%;
+@media screen and (min-width:450px){
+    width:375px;
+}
+height:48px;
 `;

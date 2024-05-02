@@ -83,7 +83,7 @@ function Lental_2() {
         </FlowBox>
 
         <PayBox>
-          <CntBox>
+          {/* <CntBox>
             <h1>
               대여 개수
             </h1>
@@ -115,7 +115,7 @@ function Lental_2() {
                 9
               </CntBtn>
             </BtnBox>
-          </CntBox>
+          </CntBox> */}
 
           <h1>결제예정금액 상세</h1>
           <ReceiptBox>
@@ -187,16 +187,16 @@ const PayBox = styled(Flex)`
   justify-content: space-between;
   gap:12px;
 
-  padding-top: 20px;
+  padding-top: 30px;
   padding-bottom: 42px;
 
   h1 {
     color: var(--kakao-logo, #000);
-    font-family: Pretendard;
     font-size: 25px;
     font-style: normal;
     font-weight: 700;
 
+    margin-bottom:24px;
   }
 `;
 

@@ -9,9 +9,9 @@ function PaymentLoading() {
     useEffect(() => {
         const initiatePayment = async () => {
             try {
-                const response = await axios.post('http://13.124.95.110:8080/payment/ready', {
-                    "quantity": 1,
-                    "total_amount": 10
+                const response = await axios.post('http://13.124.95.110:8080/api/v1/payment/ready', {
+                    "matId": 1,
+                    "totalAmount": 7000
                 });
                 console.log(response.data);
                 console.log(response.data.next_redirect_pc_url);//요거
@@ -29,7 +29,6 @@ function PaymentLoading() {
 
             if (pgToken) {
                 console.log("Payment success with pg_token:", pgToken);
-                
                 navigate('/lental/3', { state: { pgToken: pgToken } });
             } else {
                 initiatePayment();

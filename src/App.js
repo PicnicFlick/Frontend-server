@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
+
 import Test from "./pages/Test";
 import Home from "./pages/Home";
 import MyPage from "./pages/Menu/MyPage";
@@ -20,8 +21,6 @@ import PaymentLoading from "pages/Lental/PaymentLoading";
 import MyPage_History from "pages/Menu/MyPage_History";
 import MyPage_History_Detail from "pages/Menu/MyPage_History_Detail";
 import MyPage_Revise from "pages/Menu/MyPage_Revise";
-
-
 
 
 
@@ -52,6 +51,7 @@ function App() {
             <Route path="payment-loading" element={<PaymentLoading/>}/>
             <Route path="3" element={<Lental_3/>}/>
             <Route path="final" element={<Lental_Final/>}/>
+
           </Route>
 
           

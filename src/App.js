@@ -59,10 +59,10 @@ function App() {
             <Route path="final" element={<Lental_Final/>}/>
           </Route>
 
-          <Route path="return" element={<Lental_Root/>}>
-            <Route path="start" element={<Lental_Start/>}/>
-            <Route path="qr" element={<Lental_QR/>}/>
-            <Route path="final" element={<Lental_Final/>}/>
+          <Route path="return" element={<Return_Root/>}>
+            <Route path="start" element={<Return_Start/>}/>
+            <Route path="qr" element={<Return_QR/>}/>
+            <Route path="final" element={<Return_Final/>}/>
           </Route>
 
         </Routes>

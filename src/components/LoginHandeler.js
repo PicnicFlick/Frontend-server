@@ -13,7 +13,7 @@ console.log(code);
 useEffect(() => {
   const kakaoLogin = async () => {
     if (!code) return;
-    console.log("code ^^!!", code);
+    console.log("인가코드 : ", code);
     try {
       const res = await axios({
         method: "POST",
@@ -30,10 +30,13 @@ useEffect(() => {
       const refreshToken = res.data.result.tokenInfoResponseDto.refreshToken;
       const name = res.data.result.name;
       const email = res.data.result.email;
+      const socialId = res.data.result.socialId;
+
+      
 
       console.log("accessToken : " + accessToken);
       console.log("refreshToken : " + refreshToken);
-      console.log("name, email : ", name, email);
+      console.log("name, email, socialId : ", name, email, socialId);
       sessionStorage.setItem('token', accessToken);//'get'이 아니라 'set',,,
       sessionStorage.setItem('refreshtoken', refreshToken);
       sessionStorage.setItem('name', name);

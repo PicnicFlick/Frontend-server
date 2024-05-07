@@ -1,52 +1,43 @@
 import TopFixedBar, { TopFixedBar_Blank } from "components/TopFixedBar";
 import { Flex, WidthBlock, Wrapper } from "pages/Home";
 import { MainBoard } from "./MyPage";
-import { useState } from "react";
+import { useEffect, useState, usestatus } from "react";
 import styled from "styled-components";
 
 import next from 'assets/images/Next.svg';
 import dropDown from 'assets/images/DropDown.svg';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function MyPage_History(){
     const navigate=useNavigate();
-    const [rentList,setRentList] = useState([
-        {
-            id:1,
-            day:'2024-04-24',
-            time:'16:32 ~',
-            state:'rent',
-            price:50000
-        },
-        {
-            id:4,
-            day:'2024-04-25',
-            time:'16:32 ~ 18:30',
-            state:'return',
-            price:4000
-        },
-        {
-            id:6,
-            day:'2024-04-25',
-            time:'16:32 ~',
-            state:'return',
-            price:4000
-        },
-        {
-            id:9,
-            day:'2024-04-25',
-            time:'16:32 ~',
-            state:'return',
-            price:4000
-        },
-        {
-            id:10,
-            day:'2024-04-25',
-            time:'16:32 ~',
-            state:'return',
-            price:4000
-        },
-    ])
+    const [rentList,setRentList] = useState([])
+
+    const fetchRentList = async () => {
+        const token = sessionStorage.getItem('token');
+        try{
+            const response = await axios.get(
+                `${process.env.REACT_APP_BACK_API}/api/v1/history/log`
+                ,
+                {
+                    headers:{
+                        Authorization:`${token}`
+                    }
+                }
+            )
+            console.log(response.data)
+            setRentList(response.data.result);
+
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    useEffect(()=>{
+        fetchRentList();
+    },[]);
+
+
     return (
         <Wrapper>
             <WidthBlock>
@@ -57,7 +48,7 @@ function MyPage_History(){
                         이용내역
                     </h1>
                     <h2>
-                        총&nbsp;{rentList.length}건
+                        총&nbsp;{rentList?.length}건
                     </h2>
                     <DropDownBox>
                         <select>
@@ -71,28 +62,28 @@ function MyPage_History(){
                 
                 <MainBoard>
                     {rentList.map((item,index)=>(
-                    <HistoryBox state={item.state}>
+                    <HistoryBox status={item.status}>
                         <TextBox>
                         <h1>
-                            {item.day}
+                            {item.rentDay?.slice(0,10)}
                         </h1>
                         <h2>
-                            {item.time}
+                            {item.startTime} ~ {item.returnTime?.slice(0,8)}
                         </h2>
                         </TextBox>
 
                         
                         <button>
                         {
-                          item.state=='rent'
+                          item.status=='NOT_RETURNED'
                             ? '대여중'
-                            : item.state.length>0
-                            && '반납완료'
+                            : (item.status=='RETURNED'
+                            && '반납완료')
                         }
                         </button>
                         
                         <NextBox>
-                            <h1 onClick={()=>navigate(`${item.id}`,{state:item})}>
+                            <h1 onClick={()=>navigate(`${item.history_id}`,{status:item})}>
                                 {item.price.toLocaleString()}원
                             </h1>
                             <img src={next}/>
@@ -230,7 +221,7 @@ button{
     font-weight: 700;
     line-height: 24px; /* 200% */
     letter-spacing: -0.333px;
-    ${props=>props.state=='rent'
+    ${props=>props.status=='NOT_RETURNED'
     ? 'background-color: #00D09E;' 
     : 'background-color: #D9D9D9;'}
 }
@@ -242,7 +233,7 @@ ${NextBox}{
     gap:8px;
 
     h1{
-        ${props=>props.state=='rent'
+        ${props=>props.status=='NOT_RETURNED'
     ? 'color: #00D09E;' 
     : 'color: #636363;'}
 

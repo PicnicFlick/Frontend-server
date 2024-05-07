@@ -6,6 +6,7 @@ import profile from 'assets/images/ProfileIcon.png';
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 function MyPage_Revise(){
     const location = useLocation();
@@ -27,12 +28,32 @@ function MyPage_Revise(){
             setDisabled(false);
     };
 
-    const onClick_revise = (event) => {
-        event.preventDefault();
+    const onClick_revise = async () => {
         let tmp = window.confirm('닉네임을 변경하시겠습니까?');
+        const nickname = userData.name;
+        const token = sessionStorage.getItem('token');
+
+        if(tmp){
+            try{
+                const response = await axios.patch(
+                    `${process.env.REACT_APP_BACK_API}/api/v1/user/update/nickname`
+                    ,{nickname:nickname},
+                    {
+                        headers:{
+                            Authorization:token
+                        }
+                    }
+                )
+                if(response.data.isSuccess)
+                    console.log(response.data);
+                else
+                    alert(response.data.message);
+
+            }catch(error){
+                console.log(error);
+            }
+        }
     }
-
-
     // console.log(userData,disabled);
     return (
         <Wrapper>

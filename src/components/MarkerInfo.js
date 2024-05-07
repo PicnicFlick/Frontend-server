@@ -13,20 +13,24 @@ function MarkerInfo({placeInfo, setShowInfo}){
             onClick={()=>setShowInfo(false)}/>
             <UnderBar>
                 <CloseBtn onClick={()=>setShowInfo(false)} src={x}/>
+                {
+                typeof(placeInfo) === 'object'
+                &&
                 <UnderBarBoard onClick={()=>setShowInfo(true)}>
                     <UnderBar_Div disabled={true}>
                     <h1>
-                        {placeInfo.name}
+                        {/* {placeInfo.name} */}
                     </h1>
                     <h2>
                         대여 가능 수량
                     </h2>
                     <h3>
-                        {placeInfo.cnt}개
+                        {placeInfo.availableCount}개
                     </h3>
                     </UnderBar_Div>
                     <PlaceImg src = {place}/>
                 </UnderBarBoard>
+                }
             </UnderBar>
         </MarkerInfoBoard>
     )

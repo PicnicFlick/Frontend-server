@@ -17,7 +17,7 @@ useEffect(() => {
     try {
       const res = await axios({
         method: "POST",
-        url: `http://54.180.208.134:8080/api/v1/login/oauth2/code/kakao?code=${code}`,
+        url: `${process.env.REACT_APP_BACK_API}/api/v1/login/oauth2/code/kakao?code=${code}`,
         headers: {
           "Content-Type": "application/json;charset=utf-8",
           "Access-Control-Allow-Origin": "*",

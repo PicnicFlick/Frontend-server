@@ -9,6 +9,7 @@ import bottomLogo from 'assets/images/BottomLogo.png';
 import profile from 'assets/images/ProfileIcon.png';
 import { useNavigate } from "react-router-dom";
 import QuitModal from "components/QuitModal";
+import axios from "axios";
 
 
 function MyPage() {
@@ -27,6 +28,30 @@ function MyPage() {
     const onClick_open = () => {
         setShowModal(true);
     }
+
+    const fetchUserData = async () => {
+        const token = sessionStorage.getItem('token');
+        try{
+            const response = await axios.get(
+                `${process.env.REACT_APP_BACK_API}/api/v1/user/mypage`
+                ,
+                {
+                    headers:{
+                        Authorization:`${token}`
+                    }
+                }
+            )
+            console.log(response.data)
+            setUserData(response.data.result);
+
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    useEffect(()=>{
+        fetchUserData();
+    },[]);
 
     useEffect(()=>{
         if(typeof(userData) === 'object'){

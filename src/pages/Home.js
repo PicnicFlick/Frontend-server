@@ -6,11 +6,12 @@ import x from 'assets/images/X.png';
 import next from 'assets/images/Next.png';
 
 import { Link } from "react-router-dom";
-import NaverMap from "components/NaverMap";
+import NaverMap, { locations } from "components/NaverMap";
 import { useEffect, useRef, useState } from "react";
 import MenuBar from "components/MenuBar";
 import { useNavigate } from "react-router-dom";
 import MarkerInfo from "components/MarkerInfo";
+import axios from "axios";
 
 
 export const VH = window.innerHeight;
@@ -18,7 +19,6 @@ export const QRHEIGHT = 72;
 const TOPBARHEIGHT = 48;
 
 function Home() {
-    const [login, setLogin] = useState(false);
     const [showPopUp, setShowPopUp] = useState(true);
     const [showMenu, setShowMenu] = useState(false);
     const [showInfo,setShowInfo] = useState(false);
@@ -26,20 +26,7 @@ function Home() {
     const [menuLeft, setMenuLeft] = useState('100%');
     const navigate = useNavigate();
 
-    const placeInfos = [
-        {
-            name:'CU 한강르네상스뚝섬점 옆',
-            cnt:20
-        },
-        {
-            name:'X게임장 옆',
-            cnt:14
-        },
-        {
-            name:'강변북로 한가운데',
-            cnt:14
-        }
-    ]
+    const [placeInfo,setPlaceInfo] = useState();
 
     const onClick_showPopUp = () => {
         setShowPopUp(prev => !prev);
@@ -55,11 +42,35 @@ function Home() {
         navigate('/lental/start');
     }
 
+    const fetchLocation = async () => {
+        const token = sessionStorage.getItem('token');
+        try{
+            const response = await axios.get(
+                `${process.env.REACT_APP_BACK_API}/api/v1/mat`,
+                {
+                    latitude:locations[infoIndex],
+                    longitude:locations[infoIndex]
+                },
+                {headers:{
+                    Authorizaiton: token
+                }})
+                console.log(response.data);
+                setPlaceInfo(response.data.result);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
     useEffect(()=>{
         if(showMenu)
             setMenuLeft("40%");
     },[showMenu]);
 
+    useEffect(()=>{
+        if(showInfo){
+            fetchLocation();
+        }
+    },[showInfo])
 
     return (
         <Wrapper>
@@ -114,10 +125,11 @@ function Home() {
                 )
                 // 중첩조건문할 때는 괄호 사용
                 }
-                {showInfo 
+                {
+                (showInfo)
                 &&
                 <MarkerInfo 
-                placeInfo={placeInfos[infoIndex]}
+                placeInfo={placeInfo}
                 setShowInfo={setShowInfo}/>
                 }
             

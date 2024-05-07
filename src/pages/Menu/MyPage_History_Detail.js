@@ -8,26 +8,38 @@ import next from 'assets/images/Next.svg';
 import dropDown from 'assets/images/DropDown.svg';
 import bottomLogo from 'assets/images/BottomLogo.png';
 import { useLocation, useParams } from "react-router-dom";
+import axios from "axios";
 
 function MyPage_History_Detail() {
     const id = useParams().id;
-    const location = useLocation();
-    const rentList_id = location.state;
     const [rentDetail, setRentDetail] = useState();
 
-    useEffect(() => {
-        if (typeof (rentList_id) === 'object') {
-            setRentDetail({
-                ...rentList_id,
-                rentPlace: 'CU한강르네상스뚝섬점옆',
-                id: 13,
-                // returnPlace:'CU한강르네상스뚝섬점옆',
-                rentPrice: 40000,
-                deposit: 3000
-            }
+    const fetchRentDetail = async () => {
+        const token = sessionStorage.getItem('token');
+        console.log('id',id);
+        try{
+            const response = await axios.get(
+                `${process.env.REACT_APP_BACK_API}/ap1/v1/history/:${id}`
+                ,
+                {id:id},
+                {
+                    headers:{
+                        Authorization:`${token}`
+                    }
+                }
             )
+            console.log(response.data)
+            setRentDetail(response.data.result);
+
+        }catch(error){
+            console.log(error);
         }
-    }, [rentList_id])
+    }
+
+    useEffect(()=>{
+        fetchRentDetail();
+    },[]);
+
 
     console.log("rentDetail", rentDetail);
     return (
@@ -38,7 +50,7 @@ function MyPage_History_Detail() {
                 {typeof (rentDetail) == 'object'
                     &&
                     <MainBoard>
-                        <DetailBoard state={rentDetail.state}>
+                        <DetailBoard state={rentDetail.status}>
                             <p>상세내역</p>
                             <DetailBox>
                                 <TextBox1>
@@ -67,10 +79,10 @@ function MyPage_History_Detail() {
                                         {rentDetail.id}번
                                         <button>
                                             {
-                                                rentDetail.state == 'rent'
+                                                rentDetail.status == 'NOT_RETURNED'
                                                     ? '대여중'
-                                                    : rentDetail.state.length > 0
-                                                    && '반납완료'
+                                                    : (rentDetail.status == 'RETURNED'
+                                                    && '반납완료')
                                             }
                                         </button>
                                     </h2>
@@ -83,7 +95,7 @@ function MyPage_History_Detail() {
                                 결제내역
                             </p>
                             <ReceiptBox>
-                                <ReceiptElement state={rentDetail.state}>
+                                <ReceiptElement state={rentDetail.status}>
                                     <h1>대여요금</h1>
                                     <h2>-{rentDetail.rentPrice}</h2>
                                 </ReceiptElement>
@@ -93,14 +105,14 @@ function MyPage_History_Detail() {
                                 </ReceiptElement>
 
                                 <ReceiptElement>
-                                    <h1>보증금 환급 {rentDetail.state === 'rent' && '(반납시)'}</h1>
+                                    <h1>보증금 환급 {rentDetail.status === 'NOT_RETUREND' && '(반납시)'}</h1>
                                     <h2>+{rentDetail.deposit}</h2>
                                 </ReceiptElement>
 
                                 <HR />
 
                                 <ReceiptElement>
-                                    <h1>실제 결제금액 {rentDetail.state === 'rent' && '(반납시)'}</h1>
+                                    <h1>실제 결제금액 {rentDetail.status === 'NOT_RETURNED' && '(반납시)'}</h1>
                                     <h2>-{rentDetail.deposit}</h2>
                                 </ReceiptElement>
                             </ReceiptBox>

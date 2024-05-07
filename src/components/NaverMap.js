@@ -3,6 +3,22 @@ import styled from "styled-components";
 
 import marker from 'assets/images/Marker.svg';
 
+export const locations = [
+  {
+    latitude:37.5293507, 
+    longitude:127.0699562
+  },
+  {
+    latitude:37.5300000, 
+    longitude:127.0690000
+  },
+  {
+    latitude:37.5290000,
+    longitude: 127.072000
+  },
+]
+
+
 function NaverMap({
   height, 
   showInfo, 
@@ -19,7 +35,7 @@ function NaverMap({
   useEffect(() => {
     const { naver } = window;
     if (mapRef.current && naver) {
-      const location = new naver.maps.LatLng(37.5293507, 127.0699562);
+      const location = new naver.maps.LatLng(locations[0].latitude,locations[0].longitude);
 
       const map = new naver.maps.Map(mapRef.current, {
         center: location,
@@ -43,7 +59,7 @@ function NaverMap({
       });
 
       markers[1] = new naver.maps.Marker({
-        position: new naver.maps.LatLng(37.5300000, 127.0690000),
+        position: new naver.maps.LatLng(locations[1].latitude,locations[1].longitude),
         map: map,
         icon: {
           url: marker, //50, 68 크기의 원본 이미지
@@ -56,7 +72,7 @@ function NaverMap({
       });
 
       markers[2] = new naver.maps.Marker({
-        position: new naver.maps.LatLng(37.5290000, 127.0720000),
+        position: new naver.maps.LatLng(locations[2].latitude,locations[2].longitude),
         map: map,
         icon: {
           url: marker, //50, 68 크기의 원본 이미지

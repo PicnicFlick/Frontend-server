@@ -86,7 +86,15 @@ function MenuBar({left, setMenuLeft, setShowMenu}){
             }
                 <Strab/>
                 <MenuBoard>
-                    <h1>
+                    <h1 onClick={()=>{
+                        if(sessionStorage.getItem('token')==null){
+                            alert('로그인이 필요한 서비스입니다.')
+                            navigate('/login');
+                        }
+                        else {
+                            navigate('/my_page')
+                        }
+                    }}>
                         마이페이지
                     </h1>
                     <h1>
@@ -287,6 +295,8 @@ font-style: normal;
 font-weight: 400;
 line-height: 24px; /* 120% */
 letter-spacing: -0.333px;
+
+cursor:pointer;
 }
 `;
 

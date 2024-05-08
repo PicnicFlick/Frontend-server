@@ -18,7 +18,8 @@ import Lental_Final from "pages/Lental/Lental_Final";
 import Return_Root from "pages/Return/Return_Root";
 import Return_Start from "pages/Return/Return_Start";
 import Return_QR from "pages/Return/Return_QR";
-import Return_Final from "pages/Return/Return_Final";
+import RefundLoading from "pages/Return/RefundLoding";
+import Return_1 from "pages/Return/Return_1";
 
 //회원관련
 import Login from 'pages/Login';
@@ -62,7 +63,8 @@ function App() {
           <Route path="return" element={<Return_Root/>}>
             <Route path="start" element={<Return_Start/>}/>
             <Route path="qr" element={<Return_QR/>}/>
-            <Route path="final" element={<Return_Final/>}/>
+            <Route path="refund-loading" element={<RefundLoading/>}/>
+            <Route path="1" element={<Return_1/>}/>
           </Route>
 
         </Routes>

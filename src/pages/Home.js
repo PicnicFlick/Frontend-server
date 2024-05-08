@@ -42,6 +42,10 @@ function Home() {
         navigate('/lental/start');
     }
 
+    const goToReturnStart=()=>{
+        navigate('/return/start');
+    }
+
     const fetchLocation = async () => {
         const token = sessionStorage.getItem('token');
         try{
@@ -100,7 +104,7 @@ function Home() {
 
                 <QRBar>
                     <h1 onClick={goToLentalStart}>대여하기</h1>
-                    <h2>반납하기</h2>
+                    <h2 onClick={goToReturnStart}>반납하기</h2>
                 </QRBar>
 
                 {showPopUp&&

@@ -14,6 +14,13 @@ import Lental_QR from "pages/Lental/Lental_QR";
 import Lental_Start from "pages/Lental/Lental_Start";
 import Lental_Final from "pages/Lental/Lental_Final";
 
+//반납하기
+import Return_Root from "pages/Return/Return_Root";
+import Return_Start from "pages/Return/Return_Start";
+import Return_QR from "pages/Return/Return_QR";
+import RefundLoading from "pages/Return/RefundLoding";
+import Return_1 from "pages/Return/Return_1";
+
 //회원관련
 import Login from 'pages/Login';
 import Lental_3 from "pages/Lental/Lental_3";
@@ -55,13 +62,21 @@ function App() {
             <Route path="payment-loading" element={<PaymentLoading/>}/>
             <Route path="3" element={<Lental_3/>}/>
             <Route path="final" element={<Lental_Final/>}/>
+          </Route>
 
+          <Route path="return" element={<Return_Root/>}>
+            <Route path="start" element={<Return_Start/>}/>
+            <Route path="qr" element={<Return_QR/>}/>
+            <Route path="refund-loading" element={<RefundLoading/>}/>
+            <Route path="1" element={<Return_1/>}/>
           </Route>
 
           <Route path="auth/login" element = {<Auth_Login/>}/>
           <Route path="auth/selection" element = {<Auth_Selection/>}/>
           <Route path="auth/item" element = {<Auth_Item/>}/>
           <Route path="auth/history" element = {<Auth_History/>}/>
+
+          
 
         </Routes>
       </BrowserRouter>

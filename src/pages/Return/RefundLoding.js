@@ -2,19 +2,18 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function PaymentLoading() {
+function RefundLoading() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const initiatePayment = async () => {
+        const initiateRefund = async () => {
             try {
                 const accessToken = sessionStorage.getItem('token'); // Make sure 'accessToken' is the correct key where the token is stored
                 if (!accessToken) {
                     throw new Error("No access token available.");
                 }                console.log(accessToken);
-                const response = await axios.post('http://54.180.208.134:8080/api/v1/payment/ready', {
-                    "matId": 2,
-                    "totalAmount": 7000
+                const response = await axios.post('http://54.180.208.134:8080/api/v1/payment/refund', {
+                    "matId": 2
                 },{
                     headers:{
                         Authorization: `${accessToken}`
@@ -29,7 +28,7 @@ function PaymentLoading() {
                     }
                 })
                 .catch(error => {
-                    console.error('Payment initiation failed:', error);
+                    console.error('Refund initiation failed:', error);
                     navigate('/error'); 
                 });
                 console.log("Response Data:", response.data);//****
@@ -49,24 +48,24 @@ function PaymentLoading() {
             }
         };
 
-        const handlePaymentSuccess = () => {
-            console.log("handlePaymentSuccess 핸들러에 들어옴!");
+        const handleRefundSuccess = () => {
+            console.log("handleRefundSuccess 핸들러에 들어옴!");
             const urlParams = new URLSearchParams(window.location.search);
             const pgToken = urlParams.get('pg_token');
             if (pgToken) {
-                console.log("Payment success with pg_token:", pgToken);
-                navigate('/lental/3', { state: { pgToken: pgToken } });
+                console.log("Refund success with pg_token:", pgToken);
+                navigate('/return/1', { state: { pgToken: pgToken } });
             } else {
-                initiatePayment();
+                initiateRefund();
             }
         };
 
-        handlePaymentSuccess();
+        handleRefundSuccess();
     }, [navigate]);
 
     return (
-        <div>결제 로딩 페이지 입니다</div>
+        <div>환불 로딩 페이지 입니다</div>
     );
 }
 
-export default PaymentLoading;
+export default RefundLoading;

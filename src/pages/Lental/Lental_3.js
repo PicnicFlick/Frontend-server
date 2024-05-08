@@ -39,7 +39,6 @@ function Lental_3() {
                 아래 결제완료 버튼을 눌러주세요.
             </H1>
 
-
             <LentalButton onClick={() => navigate('/lental/final')}>
                 결제 완료
             </LentalButton>

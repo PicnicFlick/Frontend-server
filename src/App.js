@@ -21,6 +21,10 @@ import PaymentLoading from "pages/Lental/PaymentLoading";
 import MyPage_History from "pages/Menu/MyPage_History";
 import MyPage_History_Detail from "pages/Menu/MyPage_History_Detail";
 import MyPage_Revise from "pages/Menu/MyPage_Revise";
+import Auth_Login from "pages/Auth/Auth_Login";
+import Auth_Selection from "pages/Auth/Auth_Selection";
+import Auth_Item from "pages/Auth/Auth_Item";
+import Auth_History from "pages/Auth/Auth_History";
 
 
 
@@ -54,7 +58,11 @@ function App() {
 
           </Route>
 
-          
+          <Route path="auth/login" element = {<Auth_Login/>}/>
+          <Route path="auth/selection" element = {<Auth_Selection/>}/>
+          <Route path="auth/item" element = {<Auth_Item/>}/>
+          <Route path="auth/history" element = {<Auth_History/>}/>
+
         </Routes>
       </BrowserRouter>
     </div>

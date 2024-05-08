@@ -16,15 +16,14 @@ function MyPage_History_Detail() {
 
     const fetchRentDetail = async () => {
         const token = sessionStorage.getItem('token');
-        console.log('id',id);
+        console.log('id, token',id, token);
         try{
             const response = await axios.get(
-                `${process.env.REACT_APP_BACK_API}/ap1/v1/history/:${id}`
+                `${process.env.REACT_APP_BACK_API}/api/v1/history/${id}`
                 ,
-                {id:id},
                 {
                     headers:{
-                        Authorization:`${token}`
+                        Authorization: `${token}`
                     }
                 }
             )
@@ -82,7 +81,8 @@ function MyPage_History_Detail() {
                                                 rentDetail.status == 'NOT_RETURNED'
                                                     ? '대여중'
                                                     : (rentDetail.status == 'RETURNED'
-                                                    && '반납완료')
+                                                    ? '반납완료'
+                                                    : '지각반납')
                                             }
                                         </button>
                                     </h2>
@@ -225,9 +225,11 @@ ${TextBox2}{
     font-weight: 700;
     line-height: 24px; /* 200% */
     letter-spacing: -0.333px;
-    ${props => props.state == 'rent'
+    ${props => props.status == 'NOT_RETURNED'
         ? 'background-color: #00D09E;'
-        : 'background-color: #D9D9D9;'}
+        : (props.status == 'RETURNED'
+        ?'background-color: #D9D9D9;'
+        :'background-color: #F2771E')}
     }
     }
     }

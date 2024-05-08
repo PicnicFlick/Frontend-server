@@ -26,7 +26,8 @@ function MyPage_History(){
                 }
             )
             console.log(response.data)
-            setRentList(response.data.result);
+            setRentList(response.data.result.sort(
+                (a,b)=>new Date(b.rentDay)-new Date(a.rentDay)));
 
         }catch(error){
             console.log(error);
@@ -78,7 +79,8 @@ function MyPage_History(){
                           item.status=='NOT_RETURNED'
                             ? '대여중'
                             : (item.status=='RETURNED'
-                            && '반납완료')
+                            ? '반납완료'
+                            : '지각반납')
                         }
                         </button>
                         
@@ -223,7 +225,9 @@ button{
     letter-spacing: -0.333px;
     ${props=>props.status=='NOT_RETURNED'
     ? 'background-color: #00D09E;' 
-    : 'background-color: #D9D9D9;'}
+    : (props.status=='RETURNED' 
+    ? 'background-color: #D9D9D9;' 
+    : 'background-color: #F2771E;')}
 }
 
 ${NextBox}{

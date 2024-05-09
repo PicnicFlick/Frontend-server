@@ -37,7 +37,7 @@ function Return_1() {
             console.log("Response Data:", response.data);//****
             console.log("Response Headers:", response.headers);
 
-            console.log(response.data);
+            //console.log(response.data);
             const next_redirect_pc_url = response.data.next_redirect_pc_url;
             if (next_redirect_pc_url) {
                 console.log("next_redirect_pc_url : " + next_redirect_pc_url);

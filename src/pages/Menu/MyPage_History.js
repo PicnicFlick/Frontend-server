@@ -11,7 +11,8 @@ import axios from "axios";
 
 function MyPage_History(){
     const navigate=useNavigate();
-    const [rentList,setRentList] = useState([])
+    const [tmpList,setTmpList]=useState([]);
+    const [rentList,setRentList] = useState([]);
 
     const fetchRentList = async () => {
         const token = sessionStorage.getItem('token');
@@ -28,10 +29,23 @@ function MyPage_History(){
             console.log(response.data)
             setRentList(response.data.result.sort(
                 (a,b)=>new Date(b.rentDay)-new Date(a.rentDay)));
+            setTmpList(response.data.result.sort(
+                (a,b)=>new Date(b.rentDay)-new Date(a.rentDay)))
 
         }catch(error){
             console.log(error);
         }
+    }
+
+    const onChange_select = (event) => {
+        event.preventDefault();
+        const value = event.target.value;
+        
+        if(value === 'entire')
+            setTmpList([...rentList]);
+        else
+            setTmpList(rentList.filter((item,index)=>value===item.status))
+
     }
 
     useEffect(()=>{
@@ -49,27 +63,31 @@ function MyPage_History(){
                         이용내역
                     </h1>
                     <h2>
-                        총&nbsp;{rentList?.length}건
+                        총&nbsp;{tmpList?.length}건
                     </h2>
                     <DropDownBox>
-                        <select>
-                            <option>전체</option>
-                            <option>대여중</option>
-                            <option>반납완료</option>
+                        <select onChange={onChange_select}>
+                            <option value="entire">전체</option>
+                            <option value="NOT_RETURNED">대여중</option>
+                            <option value="LATE_RETURNED">지각반납</option>
+                            <option value="RETURNED">반납완료</option>
                         </select>
                         <img src={dropDown}/>
                     </DropDownBox>
                 </TopBar_History>
                 
                 <MainBoard>
-                    {rentList.map((item,index)=>(
+                    {tmpList.map((item,index)=>(
                     <HistoryBox status={item.status}>
                         <TextBox>
                         <h1>
                             {item.rentDay?.slice(0,10)}
                         </h1>
                         <h2>
-                            {item.startTime} ~ {item.returnTime?.slice(0,8)}
+                            {item.startTime} ~ {(
+                                item.status==='RETURNED' ||
+                                item.status==='LATE_RETURNED')
+                                && item.returnTime?.slice(0,8)}
                         </h2>
                         </TextBox>
 
@@ -127,7 +145,7 @@ letter-spacing: -0.333px;
 }
 h2{
 position:absolute;
-right:100px;
+right:108px;
 color: var(--kakao-logo, #000);
 text-align: right;
 font-size: 12px;
@@ -139,7 +157,7 @@ letter-spacing: -0.333px;
 ${DropDownBox}{
     position:relative;
 
-    width: 72px;
+    width: 80px;
     height: 24px;
     flex-shrink: 0;
     border-radius: 6px;
@@ -158,6 +176,8 @@ ${DropDownBox}{
 
         padding-left:8px;
         z-index:10;
+
+        outline:none;
     }
     img{
         position:absolute;

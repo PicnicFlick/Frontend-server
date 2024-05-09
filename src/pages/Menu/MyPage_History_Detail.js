@@ -49,7 +49,7 @@ function MyPage_History_Detail() {
                 {typeof (rentDetail) == 'object'
                     &&
                     <MainBoard>
-                        <DetailBoard state={rentDetail.status}>
+                        <DetailBoard status={rentDetail.status}>
                             <p>상세내역</p>
                             <DetailBox>
                                 <TextBox1>
@@ -57,7 +57,12 @@ function MyPage_History_Detail() {
                                         대여시간
                                     </h1>
                                     <h2>
-                                    {rentDetail.day}, {rentDetail.time}
+                                    {rentDetail.started_time.slice(0,10)},
+                                    &nbsp;
+                                    {rentDetail.started_time.slice(11,)} ~ { (
+                                        rentDetail.status==='RETURNED' ||
+                                        rentDetail.status==='LATE_RETURNED'
+                                    ) && rentDetail.returned_time.slice(11,)}
                                     </h2>
                                 </TextBox1>
 
@@ -66,7 +71,7 @@ function MyPage_History_Detail() {
                                         대여하신 곳
                                     </h1>
                                     <h2>
-                                        {rentDetail.rentPlace}
+                                        {rentDetail.location}
                                     </h2>
                                 </TextBox2>
 
@@ -75,7 +80,7 @@ function MyPage_History_Detail() {
                                         돗자리(보관함) 번호
                                     </h1>
                                     <h2>
-                                        {rentDetail.id}번
+                                        {id} 번
                                         <button>
                                             {
                                                 rentDetail.status == 'NOT_RETURNED'
@@ -101,19 +106,19 @@ function MyPage_History_Detail() {
                                 </ReceiptElement>
                                 <ReceiptElement>
                                     <h1>보증금</h1>
-                                    <h2>-{rentDetail.deposit}</h2>
+                                    <h2>-{rentDetail.despositPrice}</h2>
                                 </ReceiptElement>
 
                                 <ReceiptElement>
-                                    <h1>보증금 환급 {rentDetail.status === 'NOT_RETUREND' && '(반납시)'}</h1>
-                                    <h2>+{rentDetail.deposit}</h2>
+                                    <h1>보증금 환급 {rentDetail.status === 'NOT_RETURNED' && '(반납시)'}</h1>
+                                    <h2>+{rentDetail.despositPrice}</h2>
                                 </ReceiptElement>
 
                                 <HR />
 
                                 <ReceiptElement>
                                     <h1>실제 결제금액 {rentDetail.status === 'NOT_RETURNED' && '(반납시)'}</h1>
-                                    <h2>-{rentDetail.deposit}</h2>
+                                    <h2>-{rentDetail.totalPrice}</h2>
                                 </ReceiptElement>
                             </ReceiptBox>
                         </ReceiptBoard>
@@ -226,10 +231,10 @@ ${TextBox2}{
     line-height: 24px; /* 200% */
     letter-spacing: -0.333px;
     ${props => props.status == 'NOT_RETURNED'
-        ? 'background-color: #00D09E;'
+        ? 'background-color : #00D09E;'
         : (props.status == 'RETURNED'
         ?'background-color: #D9D9D9;'
-        :'background-color: #F2771E')}
+        :'background-color:  #F2771E;')}
     }
     }
     }

@@ -22,10 +22,10 @@ function Lental_2() {
   const [time,setTime]=useState(3);
   const [activesTime,setActivesTime]=useState([true,false,false]);
   const [receipt,setReceipt] = useState({
-    price : 1000,
-    guarantee : 10000,
-    price_entire : 5000,
-    amount_spent : 1000,
+    price : 2000,
+    guarantee : 5000,
+    price_entire : 7000,
+    amount_spent : 2000,
   });
 
   

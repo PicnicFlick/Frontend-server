@@ -8,7 +8,7 @@ function RefundLoading() {
     useEffect(() => {
         const initiateRefund = async () => {
             try {
-                const accessToken = sessionStorage.getItem('token'); // Make sure 'accessToken' is the correct key where the token is stored
+                const accessToken = sessionStorage.getItem('token'); 
                 if (!accessToken) {
                     throw new Error("No access token available.");
                 }                console.log(accessToken);
@@ -29,7 +29,7 @@ function RefundLoading() {
                 })
                 .catch(error => {
                     console.error('Refund initiation failed:', error);
-                    navigate('/error'); 
+                    navigate('/return/1'); 
                 });
                 console.log("Response Data:", response.data);//****
                 console.log("Response Headers:", response.headers);
@@ -44,7 +44,7 @@ function RefundLoading() {
                 }
             } catch (error) {
                 console.error('Payment initiation failed:', error);
-                navigate('/error'); 
+                navigate('/return/1'); 
             }
         };
 

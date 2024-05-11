@@ -4,10 +4,8 @@ import { Logo, MainBoard } from "./MyPage";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import next from 'assets/images/Next.svg';
-import dropDown from 'assets/images/DropDown.svg';
 import bottomLogo from 'assets/images/BottomLogo.png';
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function MyPage_History_Detail() {

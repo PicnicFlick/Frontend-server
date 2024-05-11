@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import marker from 'assets/images/Marker.svg';
+import { useNavigate } from "react-router-dom";
 
 export const locations = [
   {
@@ -26,6 +27,7 @@ function NaverMap({
   showMenu,
   setInfoIndex
 }){
+  const navigate=useNavigate();
   const mapRef = useRef(null);
 
   var markers=[];
@@ -86,6 +88,11 @@ function NaverMap({
 
       function getClickHandler(index) {
         return function(e) {
+            if(!sessionStorage.getItem('token')){
+                alert('로그인이 필요한 서비스입니다.');
+                navigate('/login')
+            }
+              
             var marker = markers[index];
             console.log("Clicked!!:",index);
             setShowInfo(true);

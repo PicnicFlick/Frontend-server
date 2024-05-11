@@ -12,6 +12,7 @@ import MenuBar from "components/MenuBar";
 import { useNavigate } from "react-router-dom";
 import MarkerInfo from "components/MarkerInfo";
 import axios from "axios";
+import { PLACESINFO } from "consts/places";
 
 
 export const VH = window.innerHeight;
@@ -28,6 +29,13 @@ function Home() {
 
     const [placeInfo,setPlaceInfo] = useState();
 
+    const onClick_loginCheck=()=>{
+        if(!sessionStorage.getItem('token')){
+            alert('로그인이 필요한 서비스입니다.');
+            navigate('/login')
+        }
+    }
+    
     const onClick_showPopUp = () => {
         setShowPopUp(prev => !prev);
         console.log("showPopUp", showPopUp);
@@ -48,18 +56,26 @@ function Home() {
 
     const fetchLocation = async () => {
         const token = sessionStorage.getItem('token');
+        const placeId = infoIndex+1;
         try{
             const response = await axios.get(
                 `${process.env.REACT_APP_BACK_API}/api/v1/mat`,
                 {
-                    latitude:locations[infoIndex],
-                    longitude:locations[infoIndex]
+                headers:{
+                    Authorization: token
                 },
-                {headers:{
-                    Authorizaiton: token
-                }})
+                params:{
+                    placeId:placeId
+                },
+                })
                 console.log(response.data);
-                setPlaceInfo(response.data.result);
+                setPlaceInfo(
+                    {
+                    name : PLACESINFO[infoIndex].name,
+                    thumbnail : PLACESINFO[infoIndex].thumbnail,
+                    availableCount : response.data.result.availableCount
+                    }
+                );
         }catch(error){
             console.log(error);
         }
@@ -102,7 +118,7 @@ function Home() {
                     setShowInfo={setShowInfo}
                     height={VH - QRHEIGHT - TOPBARHEIGHT} />
 
-                <QRBar>
+                <QRBar onClick={onClick_loginCheck}>
                     <h1 onClick={goToLentalStart}>대여하기</h1>
                     <h2 onClick={goToReturnStart}>반납하기</h2>
                 </QRBar>

@@ -1,5 +1,5 @@
 import { Wrapper } from "pages/Home";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -22,12 +22,23 @@ function Auth_Login(){
     }
 
     const onClick_login = () => {
-        if (id==='20011751' && password==='19990819')
+        const parsed = JSON.parse(process.env.REACT_APP_AUTH_ACCOUNT);
+
+        if (id===parsed.id && 
+            password===parsed.password)
         {
-            console.log('관리자 로그인 성공')
+            console.log('관리자 로그인 성공');
+            sessionStorage.setItem('loginKey',JSON.stringify(parsed));
             navigate('/auth/selection');
         }
     }
+
+    useEffect(()=>{
+        if(!sessionStorage.getItem('token')){
+            alert('사용자페이지에서 카카오로그인을 마친 후 이용해주십시오.')
+            navigate('/login');
+        }
+    },[]);
 
     console.log("id, password", id, password);
     return(

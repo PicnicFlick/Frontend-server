@@ -10,7 +10,7 @@ function TopBar_Account({text}){
 
     return(
         <TopBar>
-            <BackBtn onClick={()=>navigate(-1)} src={back}/>
+            <BackBtn onClick={()=>navigate('/')} src={back}/>
             <Text>{text}</Text>
         </TopBar>
     )

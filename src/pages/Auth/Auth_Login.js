@@ -28,7 +28,7 @@ function Auth_Login(){
             password===parsed.password)
         {
             console.log('관리자 로그인 성공');
-            sessionStorage.setItem('loginKey',JSON.stringify(parsed));
+            sessionStorage.setItem('authKey',JSON.stringify(parsed));
             navigate('/auth/selection');
         }
     }
@@ -66,6 +66,8 @@ function Auth_Login(){
                 </InputBox>
 
                 <button onClick={onClick_login}>로그인</button>
+
+                <h2 onClick={()=>{navigate('/')}}>사용자 페이지로 가기</h2>
             </LoginBox>
         </Wrapper_Auth>
     )
@@ -128,6 +130,14 @@ button{
     font-weight: 700;
     line-height: 24px; /* 171.429% */
     letter-spacing: -0.333px;
+}
+
+h2{
+    margin-top:4px;
+    
+    font-size:12px;
+    font-weight:400;
+    cursor:pointer;
 }
 `;
 

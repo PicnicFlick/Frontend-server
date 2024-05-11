@@ -19,7 +19,7 @@ function MarkerInfo({placeInfo, setShowInfo}){
                 <UnderBarBoard onClick={()=>setShowInfo(true)}>
                     <UnderBar_Div disabled={true}>
                     <h1>
-                        {/* {placeInfo.name} */}
+                        {placeInfo.name}
                     </h1>
                     <h2>
                         대여 가능 수량
@@ -28,7 +28,7 @@ function MarkerInfo({placeInfo, setShowInfo}){
                         {placeInfo.availableCount}개
                     </h3>
                     </UnderBar_Div>
-                    <PlaceImg src = {place}/>
+                    <PlaceImg src = {placeInfo.thumbnail}/>
                 </UnderBarBoard>
                 }
             </UnderBar>

@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
 function Auth_Header({text}){
+    const navigate = useNavigate();
+
     return (
             <Header>
-                <TextBox>
+                <TextBox onClick={()=>navigate('/auth/selection')}>
                     <h1>피크닉플릭</h1>
                     <h2>{text}</h2>
                 </TextBox>
@@ -23,6 +26,8 @@ border-radius: 4px;
 background: #7D7D7D;
 `;
 const TextBox = styled.div`
+cursor:pointer;
+
 display:flex;
 justify-content:flex-start;
 align-items:flex-end;

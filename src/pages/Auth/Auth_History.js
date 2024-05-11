@@ -49,7 +49,7 @@ function Auth_History(){
     //관리자 로그인 여부//
     useEffect(()=>{
         const parsed = JSON.parse(process.env.REACT_APP_AUTH_ACCOUNT);
-        const sessionItem = JSON.parse(sessionStorage.getItem('loginKey'));
+        const sessionItem = JSON.parse(sessionStorage.getItem('authKey'));
 
         if(!sessionItem ||
             (sessionItem.id !== parsed.id ||

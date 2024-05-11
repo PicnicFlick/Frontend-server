@@ -31,6 +31,8 @@ function Auth_Login(){
             sessionStorage.setItem('authKey',JSON.stringify(parsed));
             navigate('/auth/selection');
         }
+        else
+            alert('올바르지 않은 아이디 또는 비밀번호입니다');
     }
 
     useEffect(()=>{

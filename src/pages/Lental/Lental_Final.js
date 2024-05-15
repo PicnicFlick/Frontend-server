@@ -27,7 +27,7 @@ function Lental_Final() {
                 <FinalBtn onClick={()=>navigate('/')}>
                     홈으로 가기
                 </FinalBtn>
-                <FinalBtn>
+                <FinalBtn onClick={()=>navigate('/my_page/history')}>
                     내역 확인하기
                 </FinalBtn>
             </BtnBox>

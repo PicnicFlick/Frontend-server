@@ -3,10 +3,10 @@ import { FlowBox, FlowImg, FlowText, LentalButton, LentalMain, MainBoard } from 
 import { useNavigate } from "react-router-dom";
 
 import place1 from 'assets/images/Place1.png';
-import flowSecond from 'assets/images/flowSecond.png';
 import lentalFlow1 from 'assets/images/LentalFlow1.png';
 import character from 'assets/images/Character.png';
 import ballon from 'assets/images/Ballon.png';
+import { useLogined } from "hooks/useLogined";
 
 
 function Lental_1(){

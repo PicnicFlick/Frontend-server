@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import flow from 'assets/images/LentalFlow.png';
 import { FlowBox, FlowImg, FlowText, LentalButton, LentalMain, MainBoard } from "./Lental_Root";
 import styled, { keyframes } from "styled-components";
+import { useLogined } from "hooks/useLogined";
 
 
 function Lental_Start() {
   const navigate = useNavigate();
-
   return (
     <LentalMain>
       <MainBoard>

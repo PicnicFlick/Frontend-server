@@ -7,8 +7,10 @@ import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useLogined } from "hooks/useLogined";
 
 function MyPage_Revise(){
+    useLogined();
     const location = useLocation();
     const [userData,setUserData] = useState(location.state);
     const userName = useState(location.state.name);

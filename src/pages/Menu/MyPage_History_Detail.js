@@ -7,8 +7,10 @@ import styled from "styled-components";
 import bottomLogo from 'assets/images/BottomLogo.png';
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useLogined } from "hooks/useLogined";
 
 function MyPage_History_Detail() {
+    useLogined();
     const id = useParams().id;
     const [rentDetail, setRentDetail] = useState();
 

@@ -3,9 +3,11 @@ import styled, { keyframes } from "styled-components";
 import bkBtn from 'assets/images/BackButton2.png';
 
 import { Outlet, useNavigate } from "react-router-dom";
+import { useLogined } from "hooks/useLogined";
 
 
 function Lental_Root() {
+    useLogined();
     const navigate = useNavigate();
 
     return (

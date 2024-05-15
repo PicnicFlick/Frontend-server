@@ -32,6 +32,8 @@ import Auth_Login from "pages/Auth/Auth_Login";
 import Auth_Selection from "pages/Auth/Auth_Selection";
 import Auth_Item from "pages/Auth/Auth_Item";
 import Auth_History from "pages/Auth/Auth_History";
+import UseWay from "pages/Menu/UseWay";
+import ServiceCenter from "pages/Menu/ServiceCenter";
 
 
 
@@ -47,11 +49,12 @@ function App() {
 
           <Route path ="login" element={<Login/>}/>
           <Route path="/login/oauth2/callback/kakao" element={<LoginHandeler />} /> 
-          <Route path="my_page" element = {<MyPage/>}/>
-          <Route path="my_page/revise" element={<MyPage_Revise/>}/>
-          <Route path="my_page/history" element={<MyPage_History/>}/>
-          <Route path="my_page/history/:id" element={<MyPage_History_Detail/>}/>
-
+          <Route path="/my_page" element = {<MyPage/>}/>
+          <Route path="/my_page/revise" element={<MyPage_Revise/>}/>
+          <Route path="/my_page/history" element={<MyPage_History/>}/>
+          <Route path="/my_page/history/:id" element={<MyPage_History_Detail/>}/>
+          <Route path="/useWay" element = {<UseWay/>}/>
+          <Route path="/serviceCenter" element = {<ServiceCenter/>}/>
           {/* redirect_url*/}
 
           <Route path="lental" element ={<Lental_Root/>}>

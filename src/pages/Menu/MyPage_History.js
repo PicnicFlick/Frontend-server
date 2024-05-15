@@ -8,8 +8,10 @@ import next from 'assets/images/Next.svg';
 import dropDown from 'assets/images/DropDown.svg';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useLogined } from "hooks/useLogined";
 
 function MyPage_History(){
+    useLogined();
     const navigate=useNavigate();
     const [tmpList,setTmpList]=useState([]);
     const [rentList,setRentList] = useState([]);

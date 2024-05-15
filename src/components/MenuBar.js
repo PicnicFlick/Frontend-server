@@ -55,6 +55,21 @@ function MenuBar({left, setMenuLeft, setShowMenu}){
         }
     }
 
+    const onClick_myPage = () => {
+        if(sessionStorage.getItem('token')==null){
+            alert('로그인이 필요한 서비스입니다.')
+            navigate('/login');
+        }
+        else {
+            navigate('/my_page')
+        }
+    }
+    const onClick_useWay = () => {
+        navigate('/useWay')
+    }
+    const onClick_center = () => {
+        navigate('/serviceCenter')
+    }
     return(
         <MenuBlock left={left}>
             <Next src={next} onClick={onClick_closeMenu}/>
@@ -86,21 +101,13 @@ function MenuBar({left, setMenuLeft, setShowMenu}){
             }
                 <Strab/>
                 <MenuBoard>
-                    <h1 onClick={()=>{
-                        if(sessionStorage.getItem('token')==null){
-                            alert('로그인이 필요한 서비스입니다.')
-                            navigate('/login');
-                        }
-                        else {
-                            navigate('/my_page')
-                        }
-                    }}>
+                    <h1 onClick={onClick_myPage}>
                         마이페이지
                     </h1>
-                    <h1>
+                    <h1 onClick={onClick_useWay}>
                         이용안내
                     </h1>
-                    <h1>
+                    <h1 onClick={onClick_center}>
                         고객센터
                     </h1>
                 </MenuBoard>

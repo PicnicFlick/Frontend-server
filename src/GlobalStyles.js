@@ -33,11 +33,9 @@ const GlobalStyles = createGlobalStyle`
         margin:0;
     }
     body{
-        
         line-height: 1;
         font-family: 'Pretendard-Variable';
         overscroll-behavior: none; //스크롤 체이닝 방지
-        
     }
     ol, ul{
         list-style: none;

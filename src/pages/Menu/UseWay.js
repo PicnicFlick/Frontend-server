@@ -102,11 +102,11 @@ display:flex;
 flex-direction:column;
 justify-content:space-between;
 align-items:center;
-gap:60px;
+gap:48px;
 
 button{
     width:100%;
-    height:48px;
+    height:64px;
     background: #00D09E;
 
     color: var(--back_02, #FFF);

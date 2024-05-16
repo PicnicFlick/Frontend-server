@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import marker from 'assets/images/Marker.svg';
@@ -25,19 +25,22 @@ function NaverMap({
   showInfo, 
   setShowInfo, 
   showMenu,
-  setInfoIndex
+  setInfoIndex,
+  gpsLatitude,
+  gpsLongitude,
+  locationLatitude,
+  locationLongitude
 }){
   const navigate=useNavigate();
   const mapRef = useRef(null);
 
+
   var markers=[];
-  const markerStyle= "width:20px; height:20px; background-color:red; background-image:'../assets/images/Marker.png';"
-  
 
   useEffect(() => {
     const { naver } = window;
     if (mapRef.current && naver) {
-      const location = new naver.maps.LatLng(locations[0].latitude,locations[0].longitude);
+      const location = new naver.maps.LatLng(locationLatitude,locationLongitude);
 
       const map = new naver.maps.Map(mapRef.current, {
         center: location,
@@ -49,7 +52,7 @@ function NaverMap({
         }
       });
       markers[0] = new naver.maps.Marker({
-        position: location,
+        position: new naver.maps.LatLng(locations[0].latitude,locations[0].longitude),
         map: map,
         icon: {
           url: marker, //50, 68 크기의 원본 이미지
@@ -86,6 +89,20 @@ function NaverMap({
         
       });
 
+
+      markers[3] = new naver.maps.Marker({
+        position: new naver.maps.LatLng(gpsLatitude,gpsLongitude),
+        map: map,
+        icon: {
+          content:'<div style="width:20px; height:20px; border:2px solid black; border-radius:10px; background-color:#00D09E;"/>',
+          size: new naver.maps.Size(24, 36),
+          scaledSize: new naver.maps.Size(24, 36),
+          origin: new naver.maps.Point(0, 0),
+          anchor: new naver.maps.Point(12, 34)
+      }
+        
+      });
+
       function getClickHandler(index) {
         return function(e) {
             if(!sessionStorage.getItem('token')){
@@ -104,7 +121,7 @@ function NaverMap({
         naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
 
     }
-  }, []);
+  }, [gpsLongitude,gpsLatitude]);
 
 
   return (

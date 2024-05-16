@@ -4,14 +4,15 @@ import logo from 'assets/images/Logo.png';
 import menu from 'assets/images/Menu.svg';
 import x from 'assets/images/X.png';
 import next from 'assets/images/Next.png';
+import gps from 'assets/images/Gps.svg';
 
-import NaverMap from "components/NaverMap";
 import { useEffect, useState } from "react";
-import MenuBar from "components/MenuBar";
 import { useNavigate } from "react-router-dom";
+import { PLACESINFO } from "consts/places";
 import MarkerInfo from "components/MarkerInfo";
 import axios from "axios";
-import { PLACESINFO } from "consts/places";
+import MenuBar from "components/MenuBar";
+import NaverMap, { locations } from "components/NaverMap";
 
 
 export const VH = window.innerHeight;
@@ -19,13 +20,23 @@ export const QRHEIGHT = 72;
 const TOPBARHEIGHT = 48;
 
 function Home() {
+    const navigate = useNavigate();
+
+    const [locationLatitude,setLocationLatitude] = useState(locations[0].latitude);
+    const [locationLongitude,setLocationLongitude] = useState(locations[0].longitude);
+    const [gpsLatitude,setGpsLatitude]=useState();
+    const [gpsLongitude,setGpsLongitude]=useState();
+
+    const [state,setState]=useState("");
+    const [stateTexts,setStateTexts]=useState([]);
+
     const [showPopUp, setShowPopUp] = useState(true);
     const [showMenu, setShowMenu] = useState(false);
     const [showInfo, setShowInfo] = useState(false);
+
     const [infoIndex, setInfoIndex] = useState();
     const [menuLeft, setMenuLeft] = useState('100%');
-    const navigate = useNavigate();
-
+   
     const [placeInfo, setPlaceInfo] = useState();
 
     const onClick_loginCheck = () => {
@@ -80,14 +91,33 @@ function Home() {
         }
     }
 
-    const onClick_history = () => {
-        if (sessionStorage.getItem('token') == null) {
-            alert('로그인이 필요한 서비스입니다.')
-            navigate('/login');
+    const fetchState = async() => {
+        const token = sessionStorage.getItem('token');
+        console.log('token',token);
+        try{
+            const response = await axios.get(
+                `${process.env.REACT_APP_BACK_API}/api/v1/history/recent`,
+                {
+                    headers:{
+                        Authorization:token
+                    }
+                }
+            )
+            setState(response.data.result);
+            console.log('fetchState',response.data);
+        }catch(error){
+            console.log(error);
         }
-        else {
-            navigate('/my_page/history')
-        }
+    }
+
+    const onClick_fetchGps = () => {
+        navigator.geolocation.getCurrentPosition((position) => {
+          console.log(position);
+          setGpsLatitude(position.coords.latitude);
+          setGpsLongitude(position.coords.longitude);
+          setLocationLatitude(position.coords.latitude);
+          setLocationLongitude(position.coords.longitude);
+        });
     }
 
     useEffect(() => {
@@ -100,6 +130,19 @@ function Home() {
             fetchLocation();
         }
     }, [showInfo])
+    
+    useEffect(()=>{
+        if(sessionStorage.getItem('token'))
+            fetchState();
+    },[])
+    useEffect(()=>{
+        if(state==='NOT_RETURNED')
+            setStateTexts(['현재','대여중','인 돗자리가 있습니다.'])
+        else if(state==='RETURNED')
+            setStateTexts(['현재 돗자리를', '대여중','입니다.'])
+        else if(state==='LATE_RETURNED')
+            setStateTexts(['현재','반납되지 않은 돗자리','가 있습니다.'])
+    },[state])
 
     return (
         <Wrapper>
@@ -125,17 +168,24 @@ function Home() {
                     setInfoIndex={setInfoIndex}
                     showInfo={showInfo}
                     setShowInfo={setShowInfo}
-                    height={VH - QRHEIGHT - TOPBARHEIGHT} />
+                    height={VH - QRHEIGHT - TOPBARHEIGHT}
+                    gpsLatitude={gpsLatitude}
+                    gpsLongitude={gpsLongitude}
+                    locationLatitude={locationLatitude}
+                    locationLongitude={locationLongitude} />
 
                 <QRBar onClick={onClick_loginCheck}>
                     <h1 onClick={goToLentalStart}>대여하기</h1>
                     <h2 onClick={goToReturnStart}>반납하기</h2>
                 </QRBar>
 
+                <GpsBtn onClick={onClick_fetchGps}>
+                    <img src={gps}/>
+                </GpsBtn>
                 {showPopUp &&
                     (sessionStorage.getItem('token') === null
                         ?
-                        <WarningBar>
+                        <WarningBar returned={true}>
                             <X src={x} onClick={onClick_showPopUp} />
                             서비스를 이용을 위해&nbsp;
                             <span onClick={()=>navigate('/login')}>
@@ -145,14 +195,17 @@ function Home() {
                             <Next onClick={()=>navigate('/login')} src={next} />
                         </WarningBar>
                         : 
-                        <WarningBar>
+                        <WarningBar returned={state !== "LATE_RETURNED"}>
                             <X src={x} onClick={onClick_showPopUp} />
-                            현재&nbsp;
-                            <span onClick={()=>navigate('/login')}>
-                                대여중
-                            </span>인 돗자리가 있습니다.
+                            {stateTexts[0]}&nbsp;
+                            <span onClick={()=>navigate('/my_page/history')}>
+                                {stateTexts[1]}
+                            </span>
+                            {stateTexts[2]}
                             <Next onClick={()=>navigate('/my_page/history')} src={next} />
                         </WarningBar>
+                        
+
                     )
                     // 중첩조건문할 때는 괄호 사용
                 }
@@ -282,7 +335,7 @@ left:50%;
 transform:translateX(-50%);
 bottom:100px;
 
-width: 349px;
+width: 80%;
 height: 37px;
 flex-shrink: 0;
 
@@ -300,7 +353,7 @@ line-height: 24px; /* 171.429% */
 letter-spacing: -0.333px;
 
 span{
-    color: #00D09E;
+    color: ${props=>props.returned ? '#00D09E' : '#F2771E'};
     font-size: 14px;
     cursor:pointer;
 }
@@ -338,4 +391,28 @@ min-height:100vh;
 z-index:15;
 
 background-color:rgba(0,0,0,0.5);
-`
+`;
+
+const GpsBtn = styled.div`
+position:absolute;
+bottom:${QRHEIGHT + 24}px;
+right: 24px;
+
+
+width:50px;
+height:50px;
+border-radius:25px;
+background-color:white;
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+cursor:pointer;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+img{
+    width:32px;
+    height:32px;
+}
+`;

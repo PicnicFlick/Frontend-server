@@ -80,7 +80,7 @@ function MyPage_History_Detail() {
                                         돗자리(보관함) 번호
                                     </h1>
                                     <h2>
-                                        {id} 번
+                                        {rentDetail.matId} 번
                                         <button>
                                             {
                                                 rentDetail.status == 'NOT_RETURNED'

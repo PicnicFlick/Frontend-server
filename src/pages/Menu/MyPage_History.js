@@ -9,6 +9,7 @@ import dropDown from 'assets/images/DropDown.svg';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useLogined } from "hooks/useLogined";
+import { Footer } from "components/MenuBar";
 
 function MyPage_History(){
     useLogined();
@@ -78,7 +79,7 @@ function MyPage_History(){
                     </DropDownBox>
                 </TopBar_History>
                 
-                <MainBoard>
+                <MainBoard style={{paddingBottom:'150px'}}>
                     {tmpList.map((item,index)=>(
                     <HistoryBox status={item.status}>
                         <TextBox>
@@ -114,6 +115,14 @@ function MyPage_History(){
                     </HistoryBox>
                     ))}
                 </MainBoard>
+                <Footer>
+                <h2>
+                    스마트 돗자리 대여서비스
+                </h2>
+                <h1>
+                    피크닉플릭
+                </h1>
+                </Footer>
             </WidthBlock>
         </Wrapper>
     )

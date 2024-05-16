@@ -21,7 +21,7 @@ function Auth_History(){
             const URL = process.env.REACT_APP_BACK_API;
             const token = tmpToken;
             console.log('token',token);
-
+            //[관리자]전체 사용자 내역 조회 API
             const response = await axios.get(`${URL}/api/v1/history/admin`,{
                 headers:{
                     Authorization:token

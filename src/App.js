@@ -74,9 +74,7 @@ function App() {
           <Route path="auth/login" element = {<Auth_Login/>}/>
           <Route path="auth/selection" element = {<Auth_Selection/>}/>
           <Route path="auth/item" element = {<Auth_Item/>}/>
-          <Route path="auth/history" element = {<Auth_History/>}/>
-
-          
+          <Route path="auth/history" element = {<Auth_History/>}/>       
 
         </Routes>
       </BrowserRouter>

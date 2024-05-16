@@ -1,10 +1,11 @@
 import { Wrapper } from "pages/Home";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 function Auth_Login(){
     const navigate=useNavigate();
+    const alertShownRef = useRef(false); //alert 두 번 표시 방지용 useRef 훅 선언
     
     const [id, setId]=useState("");
     const [password,setPassword] = useState("");
@@ -34,13 +35,23 @@ function Auth_Login(){
         else
             alert('올바르지 않은 아이디 또는 비밀번호입니다');
     }
-
-    useEffect(()=>{
-        if(!sessionStorage.getItem('token')){
-            alert('사용자페이지에서 카카오로그인을 마친 후 이용해주십시오.')
-            navigate('/login');
+    useEffect(() => {
+        if (!sessionStorage.getItem('token')) {
+            console.log("token 없음. 비로그인 상태.");
+            if (!alertShownRef.current) {
+                alertShownRef.current = true;
+                alert('사용자페이지에서 카카오로그인을 마친 후 이용해주십시오.');
+                console.log("소셜 로그인 화면으로 이동");
+                navigate('/login');
+            }
         }
-    },[]);
+    }, [navigate]);
+    //useEffect(()=>{
+    //     if(!sessionStorage.getItem('token')){
+    //         alert('사용자페이지에서 카카오로그인을 마친 후 이용해주십시오.')
+    //         navigate('/login');
+    //     }
+    // },[]);
 
     console.log("id, password", id, password);
     return(

@@ -46,6 +46,7 @@ function Auth_Item(){
         
         if(tmp)
             try{
+                //[관리자 페이지]돗자리 추가 API
                 const response = await axios.post(
                     `${process.env.REACT_APP_BACK_API}/api/v1/mat/admin`,
                     {
@@ -77,6 +78,7 @@ function Auth_Item(){
         
         if(tmp)
             try{
+                //[관리자] 돗자리 삭제 API
                 const response = await axios.delete(
                     `${process.env.REACT_APP_BACK_API}/api/v1/mat/${id}/admin`,
                     {

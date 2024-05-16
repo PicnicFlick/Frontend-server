@@ -68,7 +68,6 @@ align-items:center;
 
 h1{
 width:100%;
-
 color: #FFFFFF;
 text-align: center;
 font-family: BMJua;

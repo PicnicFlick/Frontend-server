@@ -46,6 +46,7 @@ function Auth_Login(){
             }
         }
     }, [navigate]);
+    
     //useEffect(()=>{
     //     if(!sessionStorage.getItem('token')){
     //         alert('사용자페이지에서 카카오로그인을 마친 후 이용해주십시오.')

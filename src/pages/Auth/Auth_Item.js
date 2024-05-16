@@ -17,7 +17,9 @@ function Auth_Item(){
     const fetchItem = async() => {
         let tmp = [];
         const token = sessionStorage.getItem('token');
+        
         for(let i = 0; i<placeIdList.length; i++){
+            console.log(token);
             try{
                 const response = await axios.get(`${process.env.REACT_APP_BACK_API}/api/v1/mat`,
                 {
@@ -159,7 +161,21 @@ function Auth_Item(){
         </Wrapper_Auth>
     )
 }
-
 export default Auth_Item
+
+const Top_Text = styled.h1``;
+const FullBox = styled.div``;
+const RentalShopBox = styled.div``;
+const IndexBox = styled.div``;
+const LentalState = styled.div``;
+const IndexLine=styled.line``;
+const AllLocker = styled.div``;
+const OneLocker=styled.div``;
+const ID = styled.text``;
+const LentalState_2 = styled.text``;
+const Delete = styled.text``;
+const DeleteButton = styled.button``;
+const Quantity = styled.div``;
+const AddButton = styled.button``;
 
 

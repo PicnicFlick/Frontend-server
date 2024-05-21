@@ -123,6 +123,7 @@ function Auth_Item(){
             <FullBox>
             <RentalShopBox>
                 <RentalShopBox_Text>음악부스 옆</RentalShopBox_Text>
+                PR없이 바로 push 해보기
             </RentalShopBox>
 
            

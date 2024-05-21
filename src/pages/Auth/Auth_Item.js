@@ -274,7 +274,7 @@ const ItemNumber = styled.span`
     display: flex; /* 가로로 나란히 배치 */
     display: inline-block;
     margin-left: 35px; /* 공백 설정 */
-    margin-right: 30px;
+    margin-right: 35px;
 `;
 
 const ID = styled.text``;
@@ -305,6 +305,7 @@ const DeleteButton = styled.button`
     height: 25px;
     background-color: pink;
     color: #333; /* 폰트 색상 설정 */
+    margin-right: 14px;
 `;
 
 const Quantity = styled.div`

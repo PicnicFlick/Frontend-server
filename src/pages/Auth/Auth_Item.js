@@ -115,6 +115,11 @@ function Auth_Item(){
     return (
         <Wrapper_Auth>
             <Auth_Header text={text}/>
+            <Top_Text>
+                대여중 총 수량 : 30개
+                <Spacer/>
+                대여 중인 총 수량 : 10개 
+            </Top_Text>
 
             <div>주영이가 작업할 곳 2</div>
 
@@ -163,7 +168,22 @@ function Auth_Item(){
 }
 export default Auth_Item
 
-const Top_Text = styled.h1``;
+const Top_Text = styled.h1`
+color: #000;
+font-family: Pretendard;
+font-size: 25px;
+font-style: normal;
+font-weight: 500;
+line-height: 24px;
+letter-spacing: -0.333px;
+margin-top: 30px;
+margin-bottom:30px;
+`;
+//span요소를 사용해서 tap한 것 처럼
+const Spacer = styled.span`
+    display : inline-block;
+    width: 80px;
+`;
 const FullBox = styled.div``;
 const RentalShopBox = styled.div``;
 const IndexBox = styled.div``;
@@ -177,5 +197,3 @@ const Delete = styled.text``;
 const DeleteButton = styled.button``;
 const Quantity = styled.div``;
 const AddButton = styled.button``;
-
-

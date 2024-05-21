@@ -135,22 +135,24 @@ function Auth_Item(){
                         <RentalShopBox>
                             <IndexBox>
                                 <IndexTopic>ID</IndexTopic>
-                                <IndexTopic>대여상태</IndexTopic>
+                                <IndexTopic>사물함번호</IndexTopic>
                                 <IndexTopic>비고</IndexTopic>
                             </IndexBox>
-                            {item.matIdList.map((item2,index2)=>
-                            <h1 key={index2}>
-                                {index2} : {item2}번
-                                {/* PLACESINFO는 상수(프론트에서 관리하는 대여장소들 정보) */}
-                                <Delete>
-                                <DeleteButton id={index+1} onClick={onClick_add}>
-                                    돗자리 삭제하기
-                                </DeleteButton>
-                                </Delete>
-                            </h1>
-                            )}
+                            <AllLocker>
+                                {item.matIdList.map((item2,index2)=>
+                                <OneLocker key={index2}>
+                                    <IndexNumber>{index2}</IndexNumber> | <ItemNumber>{item2}</ItemNumber>
+                                    {/* PLACESINFO는 상수(프론트에서 관리하는 대여장소들 정보) */}
+                                    <Delete>
+                                    <DeleteButton id={index+1} onClick={onClick_delete}>
+                                        돗자리 삭제
+                                    </DeleteButton>
+                                    </Delete>
+                                </OneLocker>
+                                )}
+                            </AllLocker>
                             <AddButton id={index+1} onClick={onClick_add}>
-                                돗자리 추가하기
+                                + 돗자리 추가
                             </AddButton>
                             <Quantity>
                                 <Quantity_Test>총 수량 : 5 <Spacer_2/> 대여 중인 수량 : 5</Quantity_Test>
@@ -188,6 +190,7 @@ const Spacer = styled.span`
 const FullBox = styled.div`
     margin-top: 30px;
     margin-bottom:30px;
+    
 `;
 const RentalShopName = styled.div`
     margin-top: 10px;
@@ -202,6 +205,7 @@ const RentalShopName_Text = styled.h1`
     line-height: 24px;
     letter-spacing: -0.333px;
     margin-top: 0 29px;
+    margin-left:20px;
     flex:1;
 `;
 //각 대여소 Box를 가로로 나열하기 위해 Container 컴포넌트를 따로 만들어줬다.
@@ -213,26 +217,34 @@ const RentalShopContainer = styled.div`/*row 배치*/
     flex-wrap: wrap;/*컨테이너 내 item들이 크기 초과할 때 어떻게 동작하는지 결정. wawrp => 아이템들이 컨테이너 너비 초과하면 다음 줄로 이동하여 베차 -> 반응형 레이아웃*/
     width: 100%;
 `;
-const RentalShopBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 300px;
-    margin: 10px;
-    padding: 20px;
-    flex-shrink: 0;
-    border-radius: 12px;
-    background: #D9D9D9;
+const AllLocker = styled.div`
+margin-top: 20px;
+margin-bottom: 20px;
+margin-right: 40px;
+border-bottom:1.5px solid #000;
 `;
+
+const RentalShopBox = styled.div`
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: flex-start;
+width: 300px;
+margin: 10px;
+padding: 20px;
+flex-shrink: 0;
+border-radius: 12px;
+background: #D9D9D9;
+`;
+
 const IndexBox = styled.div`
-    flex-direction: row;
-    display: flex;
-    margin-right:1px;
-    margin-left:10px;
-    margin-top: 1px;
-    margin-bottom:10px;
-    border-bottom: 1.5px solid #000; /*줄!!*/
+display: flex;
+flex-direction: row;
+margin-right: 1px;
+margin-left: 10px;
+margin-top: 1px;
+margin-bottom: 10px;
+border-bottom: 1.5px solid #000; /* 줄 */
 `;
 const IndexTopic = styled.h1`
     width: 86px;
@@ -248,23 +260,53 @@ const IndexTopic = styled.h1`
     letter-spacing: -0.333px;
 `;
 const LentalState = styled.div``;
+
 const IndexLine=styled.line``;
-const AllLocker = styled.div``;
-const OneLocker=styled.div``;
+
+
+const IndexNumber = styled.span`
+    display: flex; /* 가로로 나란히 배치 */
+    margin-left: 35px; /* 공백 설정 */
+    margin-right: 25px;
+`;
+
+const ItemNumber = styled.span`
+    display: flex; /* 가로로 나란히 배치 */
+    display: inline-block;
+    margin-left: 35px; /* 공백 설정 */
+    margin-right: 30px;
+`;
+
 const ID = styled.text``;
 const LentalState_2 = styled.text``;
-//취소하기 버튼 전용 span
-const Delete = styled.text`
+/* //취소하기 버튼 전용 span */
+const Delete = styled.span`
+    margin-left: auto; /* 자동으로 왼쪽 여백을 채워 버튼을 오른쪽으로 밀어냄 */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+`;
+const OneLocker = styled.div`
+    display: flex; /* 가로로 나란히 배치 */
+    align-items: center; /* 세로 정렬을 중앙으로 맞춤 */
+    justify-content: space-between; /* 양쪽 끝으로 배치 */
     margin-right:10px;
     margin-left:10px;
-    margin-top: 10px;
-    margin-bottom:10px;
+    margin-bottom:10px; 
+    width: 250px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: #F7F7F7;
 `;
 const DeleteButton = styled.button`
-    width:100px;
-    height:20px;
-    background-color:pink;
+    width: 75px;
+    height: 25px;
+    background-color: pink;
+    color: #333; /* 폰트 색상 설정 */
 `;
+
 const Quantity = styled.div`
     margin-top:10px;
     margin-bottom:10px;
@@ -299,5 +341,8 @@ const AddButton = styled.button`
     width:100px;
     height:20px;
     background-color:yellowgreen;
+    color:white;
+    margin-left:160px;
 `;
+
 

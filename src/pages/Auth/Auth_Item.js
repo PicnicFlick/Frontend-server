@@ -120,24 +120,11 @@ function Auth_Item(){
                 <Spacer/>
                 대여 중인 총 수량 : 10개 
             </Top_Text>
-            <FullBox>
-            
-
-           
+            <FullBox> 
             {resultList?.map((item,index)=>{
                 return(
                 <div key={index}>
-                    
-                    <button 
-                    style={{
-                        width:'100px',
-                        height:'20px',
-                        backgroundColor:'yellowgreen',
-                    }}
-                    id = {index+1} 
-                    onClick={onClick_add}>
-                        돗자리 추가하기
-                    </button>
+
                     <RentalShopName>
                     <RentalShopName_Text>
                         {index+1}. {PLACESINFO[index].name}(인덱스 : 돗자리 id)
@@ -162,6 +149,9 @@ function Auth_Item(){
 
                     </h1>
                     )}
+                    <AddButton id={index+1} onClick={onClick_add}>
+                        돗자리 추가하기
+                    </AddButton>
                     </RentalShopBox>
                     
                     
@@ -231,4 +221,9 @@ const LentalState_2 = styled.text``;
 const Delete = styled.text``;
 const DeleteButton = styled.button``;
 const Quantity = styled.div``;
-const AddButton = styled.button``;
+const AddButton = styled.button`
+    width:100px;
+    height:20px;
+    background-color:yellowgreen;
+`;
+

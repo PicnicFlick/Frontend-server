@@ -121,38 +121,41 @@ function Auth_Item(){
                 대여 중인 총 수량 : 10개 
             </Top_Text>
             <FullBox> 
-            {resultList?.map((item,index)=>{
-                return(
-                <div key={index}>
+                <RentalShopContainer>
 
-                    <RentalShopName>
-                    <RentalShopName_Text>
-                        {index+1}. {PLACESINFO[index].name}(인덱스 : 돗자리 id)
-                    </RentalShopName_Text>
-                    </RentalShopName>
-                    <RentalShopBox>
-                    {item.matIdList.map((item2,index2)=>
-                    <h1 key={index2}>
-                        {index2} : {item2}번
-                        {/* PLACESINFO는 상수(프론트에서 관리하는 대여장소들 정보) */}
-                        <DeleteButton id={index+1} onClick={onClick_add}>
-                            돗자리 삭제하기
-                        </DeleteButton>
-                    </h1>
-                    )}
-                    <AddButton id={index+1} onClick={onClick_add}>
-                        돗자리 추가하기
-                    </AddButton>
-                    </RentalShopBox>
-                    
-                    
-                    <br/>
-                </div>
-                )
-            }
-           )}
-           </FullBox>
-        </Wrapper_Auth>
+                {resultList?.map((item,index)=>{
+                    return(
+                    <div key={index}>
+
+                        <RentalShopName>
+                        <RentalShopName_Text>
+                            {index+1}. {PLACESINFO[index].name}(인덱스 : 돗자리 id)
+                        </RentalShopName_Text>
+                        </RentalShopName>
+                        <RentalShopBox>
+                        {item.matIdList.map((item2,index2)=>
+                        <h1 key={index2}>
+                            {index2} : {item2}번
+                            {/* PLACESINFO는 상수(프론트에서 관리하는 대여장소들 정보) */}
+                            <Delete>
+                            <DeleteButton id={index+1} onClick={onClick_add}>
+                                돗자리 삭제하기
+                            </DeleteButton>
+                            </Delete>
+                        </h1>
+                        )}
+                        <AddButton id={index+1} onClick={onClick_add}>
+                            돗자리 추가하기
+                        </AddButton>
+                        </RentalShopBox>   
+                        <br/>
+                    </div>
+                    )
+                }
+            )}
+            </RentalShopContainer>
+        </FullBox>
+    </Wrapper_Auth>
     )
 }
 export default Auth_Item
@@ -184,20 +187,33 @@ const RentalShopName = styled.div`
 const RentalShopName_Text = styled.h1`
     color: #000;
     font-family: Pretendard;
-    font-size: 25px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: 24px;
     letter-spacing: -0.333px;
-    margin-top: 30px;
-    margin-bottom:30px;
+    margin-top: 0 29px;
+    flex:1;
+`;
+const RentalShopContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
 `;
 const RentalShopBox = styled.div`
-width: 337px;
-height: 341px;
-flex-shrink: 0;
-border-radius: 12px;
-background: #D9D9D9;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 300px;
+    margin: 10px;
+    padding: 20px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #D9D9D9;
 `;
 const IndexBox = styled.div`
 
@@ -209,7 +225,11 @@ const AllLocker = styled.div``;
 const OneLocker=styled.div``;
 const ID = styled.text``;
 const LentalState_2 = styled.text``;
-const Delete = styled.text``;
+//취소하기 버튼 전용 span
+const Delete = styled.text`
+    margin-top:10px;
+    margin-bottom:10px;
+`;
 const DeleteButton = styled.button`
     width:100px;
     height:20px;

@@ -135,18 +135,9 @@ function Auth_Item(){
                     <h1 key={index2}>
                         {index2} : {item2}번
                         {/* PLACESINFO는 상수(프론트에서 관리하는 대여장소들 정보) */}
-                        <button 
-                        style={{
-                            width:'100px',
-                            height:'20px',
-                            backgroundColor:'pink',
-                        }}
-                        id = {item2} 
-                        data-placeid = {index+1}
-                        onClick={onClick_delete}>
-                        돗자리 삭제하기
-                    </button>
-
+                        <DeleteButton id={index+1} onClick={onClick_add}>
+                            돗자리 삭제하기
+                        </DeleteButton>
                     </h1>
                     )}
                     <AddButton id={index+1} onClick={onClick_add}>
@@ -219,7 +210,11 @@ const OneLocker=styled.div``;
 const ID = styled.text``;
 const LentalState_2 = styled.text``;
 const Delete = styled.text``;
-const DeleteButton = styled.button``;
+const DeleteButton = styled.button`
+    width:100px;
+    height:20px;
+    background-color:pink;
+`;
 const Quantity = styled.div``;
 const AddButton = styled.button`
     width:100px;

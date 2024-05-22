@@ -235,7 +235,6 @@ flex-shrink: 0;
 border-radius: 12px;
 background: #D9D9D9;
 `;
-
 const IndexBox = styled.div`
 display: flex;
 flex-direction: row;

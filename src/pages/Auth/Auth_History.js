@@ -14,6 +14,7 @@ function Auth_History(){
     const [pageNum,setPageNum]=useState(0);
     const [totalCnt,setTotalCnt]=useState(0);
     const [totalPages,setTotalPages]=useState(0);
+    const [showPopup, setShowPopup] = useState(false);
 
     const fetchHistory = async() => {
         try{
@@ -130,12 +131,22 @@ function Auth_History(){
                     <C_IndexTopic>{formatDate(item.started_time)}</C_IndexTopic>
                     <C_IndexTopic>{item.totalPrice}</C_IndexTopic>
                     <C_IndexTopic>{renderStatus(item.status)}</C_IndexTopic>
-                    <C_IndexTopic><Button_MoreDetail>더보기</Button_MoreDetail></C_IndexTopic>
+                    <C_IndexTopic>
+                        <Button_MoreDetail onClick={() => setShowPopup(true)}>더보기</Button_MoreDetail>
+                    </C_IndexTopic>                
                 </OneBox>
             )}
             </AllBox>
             </FullBox>
-      
+            {showPopup && (
+                <Popup>
+                    <Pop_1>
+                        <Pop_2>내용 1</Pop_2>
+                        <Pop_3>내용 2</Pop_3>
+                    </Pop_1>
+                    <Button_Close onClick={() => setShowPopup(false)}>닫기</Button_Close>
+                </Popup>
+            )}
         </Wrapper_Auth>
     )
 }
@@ -146,7 +157,7 @@ const Date = styled.div`
     display:flex; /*flexbox*/
     flex-direction:row; /*가로로 나열*/
     margin-top:20px;
-    margin-bottom:20px;
+    margin-bottom:1px;
     margin-right:10px;
 `;
 const Date1 =styled.h1`
@@ -220,6 +231,11 @@ const OneBox = styled.div`
     margin-left:5px;
     margin-top:10px;
     margin-bottom:10px;
+    border-radius: 4px;
+    background: #F1F0F0;
+    flex-shrink: 0;
+    align-items: center; /* 세로 정렬을 중앙으로 맞춤 */
+    justify-content: space-between; /* 양쪽 끝으로 배치 */
 `;
 const C_IndexTopic = styled.text`
     width: 86px;
@@ -248,8 +264,48 @@ const Button_MoreDetail = styled.button`
     font-weight:750;
 `;
 const Button_Delete = styled.button``;
-
+const Button_Close = styled.button`
+    width: 65px;
+    height: 25px;
+    background-color: #ff0000;
+    color: white;
+    margin-top: 10px;
+    align-self: flex-end;
+`;
 //팝업
-const Popup = styled.div``;
-const Pop_1 = styled.div``;
-const Pop_2 = styled.div``;
+const Popup = styled.div`
+    width: 720px;
+    height: 288px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    position: fixed; /* 화면에 고정 */
+    top: 50%; /* 화면의 위에서 30% 내려온 위치 */
+    left: 50%; /* 화면의 왼쪽에서 50% */
+    transform: translate(-50%, -30%); /* 정확히 중앙에 위치하도록 조정 */
+    z-index: 1000; /* 팝업을 다른 요소들 위에 표시 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+const Pop_1 = styled.div`
+display:flex;
+flex-direction:row;
+margin-top : 10px;
+margin-bottom:10px;
+margin-right:10px;
+margin-left:10px;
+`;
+const Pop_2 = styled.div`
+margin-top : 10px;
+margin-bottom:10px;
+margin-right:10px;
+margin-left:10px;
+`;
+const Pop_3 = styled.div`
+margin-top : 10px;
+margin-bottom:10px;
+margin-right:10px;
+margin-left:10px;
+`;

@@ -10,7 +10,7 @@ import profile from 'assets/images/ProfileIcon.png';
 import { useNavigate } from "react-router-dom";
 import QuitModal from "components/QuitModal";
 import axios from "axios";
-import { logined, useLogined } from "hooks/useLogined";
+import { useLogined } from "hooks/useLogined";
 
 
 function MyPage() {

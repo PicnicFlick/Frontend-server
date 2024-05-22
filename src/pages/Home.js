@@ -14,7 +14,6 @@ import axios from "axios";
 import MenuBar from "components/MenuBar";
 import NaverMap, { locations } from "components/NaverMap";
 
-
 export const VH = window.innerHeight;
 export const QRHEIGHT = 72;
 const TOPBARHEIGHT = 48;
@@ -51,7 +50,7 @@ function Home() {
         console.log("showPopUp", showPopUp);
         console.log()
     }
-
+    
     const onClick_menu = () => {
         setShowMenu(true);
     }

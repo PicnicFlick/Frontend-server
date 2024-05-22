@@ -1,7 +1,7 @@
 import TopFixedBar, { TopFixedBar_Blank } from "components/TopFixedBar";
 import { Flex, WidthBlock, Wrapper } from "pages/Home";
 import { MainBoard } from "./MyPage";
-import { useEffect, useState, usestatus } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import next from 'assets/images/Next.svg';

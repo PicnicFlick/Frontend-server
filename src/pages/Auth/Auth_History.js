@@ -18,7 +18,8 @@ function Auth_History(){
     const fetchHistory = async() => {
         try{
             const URL = process.env.REACT_APP_BACK_API;
-            const token = tmpToken;
+            // const token = tmpToken;
+            const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMzgxNDE0MTc0IiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNjU5NDU5M30.UptgLHZq6XBVwzvtO3Q-hUEnPrLi9Nsac9dGSMOB4HI";
             console.log('token!!!! : ',token);
             //[관리자]전체 사용자 내역 조회 API
             const response = await axios.get(`${URL}/api/v1/history/admin`,{
@@ -84,5 +85,7 @@ const OneBox = styled.div``;
 //버튼
 const Button_MoreDetail = styled.button``;
 const Button_Delete = styled.button``;
-
-
+//팝업
+const Popup = styled.div``;
+const Pop_1 = styled.div``;
+const Pop_2 = styled.div``;

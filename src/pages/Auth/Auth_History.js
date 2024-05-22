@@ -127,7 +127,12 @@ function Auth_History() {
                             {formatDate(selectedItem.returned_time)}
                         </Pop_3>
                         <Pop_4>대여 금액<br /><br />보증금<br /><br />실제 결제금액<br /><br />대여 상태</Pop_4>
-                        <Pop_5>대여 금액<br /><br />보증금<br /><br />실제 결제금액<br /><br />대여 상태</Pop_5>
+                        <Pop_5>
+                            {selectedItem.rentPrice}<br /><br />
+                            {selectedItem.despositPrice}<br /><br />
+                            {selectedItem.totalPrice}<br /><br />
+                            {renderStatus(selectedItem.status)}
+                        </Pop_5>
                     </Pop_1>
                     <Button_Close onClick={() => setShowPopup(false)}>닫기</Button_Close>
                 </Popup>

@@ -80,7 +80,6 @@ function Auth_Item(){
         
         if(tmp)
             try{
-                //[관리자] 돗자리 삭제 API
                 const response = await axios.delete(
                     `${process.env.REACT_APP_BACK_API}/api/v1/mat/${id}/admin`,
                     {
@@ -144,7 +143,7 @@ function Auth_Item(){
                                     <IndexNumber>{index2}</IndexNumber> | <ItemNumber>{item2}</ItemNumber>
                                     {/* PLACESINFO는 상수(프론트에서 관리하는 대여장소들 정보) */}
                                     <Delete>
-                                    <DeleteButton id={index+1} onClick={onClick_delete}>
+                                    <DeleteButton id={item2} data-placeid = {index+1} onClick={onClick_delete}>
                                         돗자리 삭제
                                     </DeleteButton>
                                     </Delete>

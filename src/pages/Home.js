@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import logo from 'assets/images/Logo.png';
 import menu from 'assets/images/Menu.svg';
@@ -25,6 +25,7 @@ function Home() {
     const [locationLongitude,setLocationLongitude] = useState(locations[0].longitude);
     const [gpsLatitude,setGpsLatitude]=useState();
     const [gpsLongitude,setGpsLongitude]=useState();
+    const [gpsLoading,setGpsLoading]=useState(false);
 
     const [state,setState]=useState("");
     const [stateTexts,setStateTexts]=useState([]);
@@ -110,12 +111,14 @@ function Home() {
     }
 
     const onClick_fetchGps = () => {
+        setGpsLoading(true);
         navigator.geolocation.getCurrentPosition((position) => {
           console.log(position);
           setGpsLatitude(position.coords.latitude);
           setGpsLongitude(position.coords.longitude);
           setLocationLatitude(position.coords.latitude);
           setLocationLongitude(position.coords.longitude);
+          setGpsLoading(false);
         });
     }
 
@@ -171,7 +174,8 @@ function Home() {
                     gpsLatitude={gpsLatitude}
                     gpsLongitude={gpsLongitude}
                     locationLatitude={locationLatitude}
-                    locationLongitude={locationLongitude} />
+                    locationLongitude={locationLongitude}
+                    gpsLoading={gpsLoading} />
 
                 <QRBar onClick={onClick_loginCheck}>
                     <h1 onClick={goToLentalStart}>대여하기</h1>
@@ -179,7 +183,11 @@ function Home() {
                 </QRBar>
 
                 <GpsBtn onClick={onClick_fetchGps}>
-                    <img src={gps}/>
+                    {gpsLoading
+                    ? <GpsLoader/>
+                    : <img src={gps}/>
+                    }
+                   
                 </GpsBtn>
                 {showPopUp &&
                     (sessionStorage.getItem('token') === null
@@ -414,4 +422,26 @@ img{
     width:32px;
     height:32px;
 }
+`;
+
+
+
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+const GpsLoader = styled.div`
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border-left-color: #00D09E;
+    animation: ${spin} 1s linear infinite;
+    margin: auto;
+    
 `;

@@ -13,7 +13,7 @@ function Login() {
                 <Footer>
                     <h1>Picnic Flick!</h1>
                     <h2>깨끗한 한강을 만드는 작은 한 걸음,</h2>
-                    <h2> 친환경 돗자리 대여 서비스</h2>
+                    <h2>친환경 돗자리 대여 서비스</h2>
                 </Footer>
                 <TopBar_Account text='로그인' />
                 <AA>

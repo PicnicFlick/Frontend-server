@@ -1,7 +1,7 @@
 
 ## 🙆🏻‍♀️ 환경오염 없이, 간편하게 돗자리 사용하자!
 
-<img width="517" alt="KakaoTalk_Photo_2024-05-31-21-44-57" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/309e0b4a-8bb4-4732-a3d8-f851ef94445d">
+<img width="317" alt="KakaoTalk_Photo_2024-05-31-21-44-57" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/309e0b4a-8bb4-4732-a3d8-f851ef94445d">
 
 <br>
 

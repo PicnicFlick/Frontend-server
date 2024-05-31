@@ -1,5 +1,57 @@
-# Frontend-server
-프론트엔드 서버입니다.
+
+## 🙆🏻‍♀️ 환경오염 없이, 간편하게 돗자리 사용하자!
+
+<img width="517" alt="KakaoTalk_Photo_2024-05-31-21-44-57" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/309e0b4a-8bb4-4732-a3d8-f851ef94445d">
+
+<br>
+
+
+
+
+## 🙆🏿‍♂️ FicnicFlick에서 한강 근처에서 돗자리를 편리하게 빌리세요
+<br>
+
+
+
+## 📺 [FicnicFlick 이용하기](https://picnicflick.store/)
+<br>
+
+---
+
+<br>
+
+## 📒 목차
+
+- [소개](#-소개)
+- [기술스택](#-기술스택)
+- [아키텍처](#-아키텍처)
+<br>
+
+## 🔖 소개
+
+**FicnicFlick**은 
+<br>
+
+## 📚 기술스택
+
+| 분야           | 사용 기술                       | 비고 |
+| -------------- | ------------------------------- | ---- |
+| FrontEnd       | React, javascript               |
+| BackEnd        | Spring, java                         |
+| Database       | MySQL             |
+| Cloud Services | AWS EC2, AWS Cloudfront, AWS S3 |
+| TOOL           | VSCODE, Notion           |
+| DESIGN         | Figma                           |
+<br>
+
+## 아키텍처
+<br>
+
+
+## 🔖 API 명세서
+
+- https://www.notion.so/API-ad040088a521449b87c0425bd64605c8
+<br>
 
 ### Commit Message
 

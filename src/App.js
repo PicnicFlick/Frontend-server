@@ -19,7 +19,6 @@ import Return_Root from "pages/Return/Return_Root";
 import Return_Start from "pages/Return/Return_Start";
 import Return_QR from "pages/Return/Return_QR";
 import RefundLoading from "pages/Return/RefundLoding";
-import Return_1 from "pages/Return/Return_1";
 
 //회원관련
 import Login from 'pages/Login';
@@ -34,6 +33,7 @@ import Auth_Item from "pages/Auth/Auth_Item";
 import Auth_History from "pages/Auth/Auth_History";
 import UseWay from "pages/Menu/UseWay";
 import ServiceCenter from "pages/Menu/ServiceCenter";
+import Return_Final from "pages/Return/Return_Final";
 
 
 
@@ -71,7 +71,7 @@ function App() {
             <Route path="start" element={<Return_Start/>}/>
             <Route path="qr" element={<Return_QR/>}/>
             <Route path="refund-loading" element={<RefundLoading/>}/>
-            <Route path="1" element={<Return_1/>}/>
+            <Route path="final" element={<Return_Final/>}/>
           </Route>
 
           <Route path="auth/login" element = {<Auth_Login/>}/>

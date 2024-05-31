@@ -13,7 +13,7 @@ function Return_Start() {
       <MainBoard>
         <FlowBox>
           <FlowImg src={flow} />
-          <FlowStart>위치 확인!!!</FlowStart>
+          <FlowStart>위치 확인</FlowStart>
         </FlowBox>
       </MainBoard>
       <StartText>

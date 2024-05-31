@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Return_1() {
+function Return_Final() {
     const navigate=useNavigate();
     const initiateRefund = async () => {
         try {
@@ -31,8 +31,7 @@ function Return_1() {
                 }
             })
             .catch(error => {
-                console.error('Refund initiation failed:', error);
-                navigate('/return/1'); 
+                alert('Refund initiation failed:' + error);
             });
             console.log("Response Data:", response.data);//****
             console.log("Response Headers:", response.headers);
@@ -46,8 +45,7 @@ function Return_1() {
                 throw new Error('No redirect URL provided');
             }
         } catch (error) {
-            console.error('Payment initiation failed:', error);
-            navigate('/return/1'); 
+            alert('Payment initiation failed:' + error);
         }
     };
 
@@ -57,7 +55,7 @@ function Return_1() {
         const pgToken = urlParams.get('pg_token');
         if (pgToken) {
             console.log("Refund success with pg_token:", pgToken);
-            navigate('/return/1', { state: { pgToken: pgToken } });
+            navigate('/return/final', { state: { pgToken: pgToken } });
         } else {
             initiateRefund();
         }
@@ -82,7 +80,7 @@ function Return_1() {
                 <FinalBtn onClick={()=>navigate('/')}>
                     홈으로 가기
                 </FinalBtn>
-                <FinalBtn>
+                <FinalBtn onClick={()=>navigate('/my_page/history')}>
                     내역 확인하기
                 </FinalBtn>
             </BtnBox>
@@ -91,7 +89,7 @@ function Return_1() {
     )
 }
 
-export default Return_1;
+export default Return_Final;
 
 
 export const fadein= keyframes`

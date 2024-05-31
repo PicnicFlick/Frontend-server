@@ -2,18 +2,18 @@ import styled, { keyframes } from "styled-components"
 import { FlowBox, FlowImg, FlowText, LentalButton, LentalMain, MainBoard } from "./Lental_Root";
 import { useNavigate } from "react-router-dom";
 
-import place1 from 'assets/images/Place1.png';
 import lentalFlow1 from 'assets/images/LentalFlow1.png';
 import character from 'assets/images/Character.png';
 import ballon from 'assets/images/Ballon.png';
-import { useLogined } from "hooks/useLogined";
+
+import parking from 'assets/images/Parking.jpeg';
 
 
 function Lental_1(){
     const navigate=useNavigate();
 
-    const place = "CU뚝섬르네상스점 옆";
-    const cnt = 8;
+    const place = "뚝섬 3주차장 옆";
+    const cnt = 6;
     const entire = 20;
     return (
         <LentalMain>
@@ -35,7 +35,7 @@ function Lental_1(){
                     <h3>
                         <span>{cnt}</span> / {entire}
                     </h3>
-                    <PlaceImg src={place1}/>
+                    <PlaceImg src={parking}/>
                 </AbleBox>
 
 

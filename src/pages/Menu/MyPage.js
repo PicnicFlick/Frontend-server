@@ -16,8 +16,6 @@ import { useLogined } from "hooks/useLogined";
 function MyPage() {
     useLogined();
     const navigate=useNavigate();
-
-    const [showModal, setShowModal]=useState(false);
     const [userData, setUserData] = useState({
         name: '노준호',
         email: 'asd1873@naver.com',
@@ -27,9 +25,6 @@ function MyPage() {
     
     const [pieData,setPieData] = useState([{},{}]);
 
-    const onClick_open = () => {
-        setShowModal(true);
-    }
 
     const fetchUserData = async () => {
         const token = sessionStorage.getItem('token');
@@ -123,14 +118,6 @@ function MyPage() {
                             <h2>{userData.echoRate}%</h2>
                         </Co2Chart>
                     </Co2Board>
-                    <QuitBtn 
-                    onClick={onClick_open}
-                    >
-                            <h2>
-                                회원탈퇴
-                            </h2>
-                            <NextBtn src={next} />
-                    </QuitBtn>
                     <Logo src={bottomLogo} />
                 </MainBoard>
                 {showModal

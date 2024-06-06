@@ -120,13 +120,6 @@ function MyPage() {
                     </Co2Board>
                     <Logo src={bottomLogo} />
                 </MainBoard>
-                {showModal
-                &&
-                <div>
-                <QuitModal setShowModal={setShowModal}/>
-                <BlackScreen/>
-                </div>
-                }
             </WidthBlock>
         </Wrapper>
     )

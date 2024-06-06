@@ -16,6 +16,9 @@ function Auth_History() {
     const [showPopup, setShowPopup] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
 
+    const [selectedCategory, setSelectedCategory]=useState("");
+    const [decling, setDecling]= useState(false);
+
     const fetchHistory = async () => {
         try {
             const URL = process.env.REACT_APP_BACK_API;
@@ -30,19 +33,15 @@ function Auth_History() {
                     status: 'RETURNED'
                 }
             });
-            console.log(response.data);
+
             console.log(response.data.result);
-            console.log(response.data.result.historyList);
             const result = response.data.result;
-            const historyList_1 = response.data.result.historyList;
-            historyList_1.forEach((item, index) => {
-                console.log(`Item ${index + 1}:`, item);
-            });
+
             if (result) {
-                setHistoryList(historyList_1);
-                setPageNum(response.data.result.pageNum);
-                setTotalCnt(response.data.result.totalCnt);
-                setTotalPages(response.data.result.totalPages);
+                setHistoryList(result.historyList);
+                setPageNum(result.pageNum);
+                setTotalCnt(result.totalCnt);
+                setTotalPages(result.totalPages);
             } else {
                 console.error('Unexpected response structure:', response.data);
             }
@@ -50,6 +49,46 @@ function Auth_History() {
             alert(error);
         }
     }
+    const onClick_sort = (event) => {
+        event.preventDefault();
+        const category = event.currentTarget.dataset.category;
+        let tmp = [...historyList];
+        console.log('type:',typeof(category));
+
+        if(selectedCategory===category){
+            if(!decling){
+                setHistoryList(tmp.sort((a,b)=>{    
+                    if(category==='historyId')
+                        return b[category]-a[category];
+                    else
+                        return String(b[category]).localeCompare(String(a[category]))
+                }))
+                setDecling(true);
+            }
+            else{
+                setHistoryList(tmp.sort((a,b)=>{    
+                    if(category==='historyId')
+                        return a[category]-b[category];
+                    else
+                        return String(a[category]).localeCompare(String(b[category]))
+                }))
+                setDecling(false);
+            }
+        }
+        else{
+            setHistoryList(tmp.sort((a,b)=>{    
+                if(category==='historyId')
+                    return a[category]-b[category];
+                else
+                    return String(a[category]).localeCompare(String(b[category]))
+            }))
+            setDecling(false);
+        }
+        
+        setSelectedCategory(category);
+    }
+
+
 
     useEffect(() => { fetchHistory() }, []);
 
@@ -85,20 +124,42 @@ function Auth_History() {
     return (
         <Wrapper_Auth>
             <Auth_Header text={text} />
-            <Date>
-                <Date1>일자</Date1>
-                <Date2>날짜 모달</Date2>
-            </Date>
             <FullBox>
                 <IndexBox>
-                    <IndexTopic>대여 ID</IndexTopic>
-                    <IndexTopic>대여자 이름</IndexTopic>
-                    <IndexTopic>대여 장소</IndexTopic>
-                    <IndexTopic>대여 일시</IndexTopic>
-                    <IndexTopic>결제금액</IndexTopic>
-                    <IndexTopic>대여상태</IndexTopic>
-                    <IndexTopic>비고</IndexTopic>
+                    <IndexTopic 
+                    data-category="historyId"
+                    onClick={onClick_sort}>
+                        대여 ID▼
+                    </IndexTopic>
+                    <IndexTopic
+                     data-category="nickname"
+                     onClick={onClick_sort}>
+                        대여자 이름▼
+                    </IndexTopic>
+                    <IndexTopic
+                     data-category="location"
+                    onClick={onClick_sort}>
+                        대여 장소▼
+                    </IndexTopic>
+                    <IndexTopic
+                     data-category="started_time"
+                    onClick={onClick_sort}>
+                        대여 일시▼</IndexTopic>
+                    <IndexTopic
+                     data-category="totalPrice"
+                    onClick={onClick_sort}>
+                        결제금액▼
+                    </IndexTopic>
+                    <IndexTopic
+                     data-category="status"
+                    onClick={onClick_sort}>
+                        대여상태▼
+                    </IndexTopic>
+                    <IndexTopic>
+                        비고
+                    </IndexTopic>
                 </IndexBox>
+                <HR/>
                 <AllBox>
                     {historyList.map((item, index) =>
                         <OneBox key={index}>
@@ -114,8 +175,7 @@ function Auth_History() {
                         </OneBox>
                     )}
                 </AllBox>
-            </FullBox>
-            {showPopup && selectedItem && (
+                {showPopup && selectedItem && (
                 <Popup>
                     <Pop_1>
                         <Pop_2>대여ID<br /><br />대여자 이름<br /><br />대여 장소<br /><br />대여 일시<br /><br />반납 일시</Pop_2>
@@ -137,100 +197,96 @@ function Auth_History() {
                     <Button_Close onClick={() => setShowPopup(false)}>닫기</Button_Close>
                 </Popup>
             )}
+            </FullBox>
         </Wrapper_Auth>
     )
 }
 
 export default Auth_History
 
-//상단 일자 component
-const Date = styled.div`
-    display:flex; /*flexbox*/
-    flex-direction:row; /*가로로 나열*/
-    margin-top:20px;
-    margin-bottom:1px;
-    margin-right:10px;
-`;
-const Date1 = styled.h1`
-width: 181px;
-height: 43px;
-flex-shrink: 0;
-color: var(--kakao-logo, #000);
-font-family: Pretendard;
-font-size: 20px;
-font-style: normal;
-font-weight: 500;
-line-height: 24px; /* 120% */
-letter-spacing: -0.333px;
-`;
-const Date2 = styled.div`
-width: 181px;
-height: 43px;
-flex-shrink: 0;
-color: var(--kakao-logo, #000);
-font-family: Pretendard;
-font-size: 20px;
-font-style: normal;
-font-weight: 500;
-line-height: 24px; /* 120% */
-letter-spacing: -0.333px;
-`;
-//히스토리 Box
+
 const FullBox = styled.div`
-margin-top:10px;
-margin-bottom:10px;
-margin-right:10px;
-margin-left:10px;
-width: 947px;
-height: 418px;
+position:relative;
+width: 948px;
+
+margin-top:30px;
+
+padding:10px 10px 20px 10px;
+
 border-radius:15px;
 border: 5px solid #7D7D7D;
 background-color: transparent;/*투명색!*/
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 `;
 const IndexBox = styled.div`
-display: flex;
-flex-direction: row;
-margin-right: 1px;
-margin-left: 10px;
+width:95%;
+
 margin-top: 15px;
-margin-bottom: 20px;
-border-bottom: 3px solid #D9D9D9; /* 줄 */
+
+display:grid;
+grid-template-columns:repeat(7,1fr);
 `;
 const IndexTopic = styled.h1`
-    width: 86px;
-    height: 33px;
     flex-shrink: 0;
     color: var(--kakao-logo, #000);
     text-align: center;
     font-family: Pretendard;
-    font-size: 19px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 700;
     line-height: 24px; /* 133.333% */
     letter-spacing: -0.333px;
     margin-right:20px;
     margin-left:25px;
+    cursor:pointer;
+
+    &:hover{
+        color: #888;
+    }
+
+    &:last-of-type{
+        cursor:initial;
+        &:hover{
+            color:#000;
+        }
+    }
+`;
+const HR = styled.div`
+width:95%;
+height:2px;
+border-radius:1px;
+margin:10px;
+
+background-color:#AAA;
 `;
 const AllBox = styled.div`
-    margin-right:20px;
-    margin-left:10px;
+    width:95%;
+    height:300px;
     margin-top:5px;
-    margin-bottom:10px;
+    overflow-y:auto;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    gap:4px;
+
 `;
 const OneBox = styled.div`
-    display: flex; 
-    margin-left:5px;
-    margin-top:10px;
-    margin-bottom:10px;
+    width:100%;
+    
     border-radius: 4px;
     background: #F1F0F0;
-    flex-shrink: 0;
-    align-items: center; /* 세로 정렬을 중앙으로 맞춤 */
-    justify-content: space-between; /* 양쪽 끝으로 배치 */
+
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
 `;
-const C_IndexTopic = styled.text`
-    width: 86px;
-    height: 33px;
+const C_IndexTopic = styled.div`
+    height: 40px;
     flex-shrink: 0;
     color: var(--kakao-logo, #000);
     text-align: center;
@@ -240,8 +296,10 @@ const C_IndexTopic = styled.text`
     font-weight: 400;
     line-height: 24px; /* 133.333% */
     letter-spacing: -0.333px;
-    margin-right:20px;
-    margin-left:25px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
 `;
 //버튼
 const Button_MoreDetail = styled.button`
@@ -249,7 +307,6 @@ const Button_MoreDetail = styled.button`
     height: 25px;
     background-color: #00C797;
     color: #333; /* 폰트 색상 설정 */
-    margin-right: 16px;
     color:white;
     font-weight:750;
 `;
@@ -268,17 +325,22 @@ const Button_Close = styled.button`
 `;
 //팝업
 const Popup = styled.div`
+    position: absolute; /* 화면에 고정 */
+    top: 50%; /* 화면의 위에서 30% 내려온 위치 */
+    left: 50%; /* 화면의 왼쪽에서 50% */
+    transform: translate(-50%, -40%); /* 정확히 중앙에 위치하도록 조정 */
+    z-index: 1000; /* 팝업을 다른 요소들 위에 표시 */
+
+
     width: 720px;
     height: 288px;
     flex-shrink: 0;
     border-radius: 12px;
     background: #FFF;
+    border-top:1px solid #eee;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    position: fixed; /* 화면에 고정 */
-    top: 50%; /* 화면의 위에서 30% 내려온 위치 */
-    left: 50%; /* 화면의 왼쪽에서 50% */
-    transform: translate(-50%, -30%); /* 정확히 중앙에 위치하도록 조정 */
-    z-index: 1000; /* 팝업을 다른 요소들 위에 표시 */
+
+   
     display: flex;
     flex-direction: column;
     align-items: center;

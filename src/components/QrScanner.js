@@ -9,7 +9,8 @@ function QrScanner() {
             onResult={(text, result) => {
                 console.log("text, result:", text, result);
                 if (text) {
-                    navigate('/lental/1', { state: { matId: text } });
+                    sessionStorage.setItem('matId',text);
+                    window.location.href='https://picnicflick.store/lental/1';
                 }
             }}
             onError={(error) => {

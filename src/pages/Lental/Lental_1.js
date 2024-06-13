@@ -10,12 +10,12 @@ import ballon from 'assets/images/Ballon.png';
 
 function Lental_1() {
     const navigate = useNavigate();
-    const location = useLocation();
-    const matId = location.state?.matId;
+    const matId = sessionStorage.getItem('matId');
 
     useEffect(() => {
         if (matId) {
             console.log("QR Result (matId):", matId);
+            sessionStorage.removeItem('matId');
         } else {
             console.error("matId is not available");
         }

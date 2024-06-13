@@ -1,5 +1,4 @@
 import { Scanner } from "@yudiel/react-qr-scanner";
-import { useNavigate } from "react-router-dom";
 
 function QrScanner() {
 
@@ -11,7 +10,7 @@ function QrScanner() {
                 window.location.href="1";
             }}
             onError={(error) => {
-                console.log(error?.message);
+                console.log('qr스캔 오류 발생 :',error?.message);
             }}
         />
     );

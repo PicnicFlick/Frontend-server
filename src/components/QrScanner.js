@@ -10,7 +10,7 @@ function QrScanner() {
                 console.log("text, result:", text, result);
                 if (text) {
                     sessionStorage.setItem('matId',text);
-                    window.location.href='https://picnicflick.store/lental/1';
+                    window.location.href='1';
                 }
             }}
             onError={(error) => {

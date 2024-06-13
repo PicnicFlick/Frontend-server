@@ -29,7 +29,8 @@ function NaverMap({
   gpsLatitude,
   gpsLongitude,
   locationLatitude,
-  locationLongitude
+  locationLongitude,
+  gpsLoading
 }){
   const navigate=useNavigate();
   const mapRef = useRef(null);
@@ -121,7 +122,7 @@ function NaverMap({
         naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
 
     }
-  }, [gpsLongitude,gpsLatitude]);
+  }, [gpsLongitude,gpsLatitude,gpsLoading]);
 
 
   return (

@@ -13,6 +13,8 @@ function Auth_Item(){
     const text = "대여품 수량관리"
     const placeIdList = [1,2,3];
     const [resultList,setResultList]=useState([]);
+    const [totalCnt, setTotalCnt] = useState(0);
+    const [availableTotalCnt, setAvailableTotalCnt] = useState(0);
 
     const fetchItem = async() => {
         let tmp = [];
@@ -37,6 +39,15 @@ function Auth_Item(){
             }
         }
         setResultList(tmp);
+        let tmp_totalCnt = 0;
+        let tmp_availableTotalCnt = 0;
+        tmp.map(item=>{
+            tmp_totalCnt+=item.matIdList.length;
+            tmp_availableTotalCnt+=item.availableCount
+        });
+
+        setTotalCnt(tmp_totalCnt);
+        setAvailableTotalCnt(tmp_availableTotalCnt)
     }
     //resultList에 각 대여장소별 response.data.result를 모아둠
 
@@ -115,9 +126,9 @@ function Auth_Item(){
         <Wrapper_Auth>
             <Auth_Header text={text}/>
             <Top_Text>
-                대여중 총 수량 : 30개
+                총 수량 : <span>{totalCnt}개</span>
                 <Spacer/>
-                대여 중인 총 수량 : 10개 
+                대여 중인 총 수량 : <span>{availableTotalCnt}개 </span>
             </Top_Text>
             <FullBox> 
                 <RentalShopContainer>
@@ -127,25 +138,26 @@ function Auth_Item(){
                     <div key={index}>
 
                         <RentalShopName>
-                        <RentalShopName_Text>
-                            {index+1}. {PLACESINFO[index].name}(인덱스 : 돗자리 id)
-                        </RentalShopName_Text>
+                            <RentalShopName_Text>
+                                {index+1}. {PLACESINFO[index].name}
+                            </RentalShopName_Text>
                         </RentalShopName>
                         <RentalShopBox>
                             <IndexBox>
-                                <IndexTopic>ID</IndexTopic>
                                 <IndexTopic>사물함번호</IndexTopic>
+                                <IndexTopic>돗자리 ID</IndexTopic>
                                 <IndexTopic>비고</IndexTopic>
                             </IndexBox>
                             <AllLocker>
                                 {item.matIdList.map((item2,index2)=>
                                 <OneLocker key={index2}>
-                                    <IndexNumber>{index2}</IndexNumber> | <ItemNumber>{item2}</ItemNumber>
+                                    <IndexNumber>{index2+1}</IndexNumber>
+                                    <ItemNumber>{item2}</ItemNumber>
                                     {/* PLACESINFO는 상수(프론트에서 관리하는 대여장소들 정보) */}
                                     <Delete>
-                                    <DeleteButton id={item2} data-placeid = {index+1} onClick={onClick_delete}>
-                                        돗자리 삭제
-                                    </DeleteButton>
+                                        <DeleteButton id={item2} data-placeid = {index+1} onClick={onClick_delete}>
+                                            돗자리 삭제
+                                        </DeleteButton>
                                     </Delete>
                                 </OneLocker>
                                 )}
@@ -154,7 +166,7 @@ function Auth_Item(){
                                 + 돗자리 추가
                             </AddButton>
                             <Quantity>
-                                <Quantity_Test>총 수량 : 5 <Spacer_2/> 대여 중인 수량 : 5</Quantity_Test>
+                                <Quantity_Test>총 수량 : {item.matIdList?.length} <Spacer_2/> 대여 중인 수량 : {item.availableCount}</Quantity_Test>
                             </Quantity>
                         </RentalShopBox>  
 
@@ -172,14 +184,20 @@ export default Auth_Item
 
 const Top_Text = styled.h1`
     color: #000;
-    font-family: Pretendard;
-    font-size: 25px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: 24px;
     letter-spacing: -0.333px;
     margin-top: 30px;
-    /* margin-bottom:10px; */
+    span{
+        color: #00D09E;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: -0.333px;
+    }
 `;
 //span요소를 사용해서 tap한 것 처럼
 const Spacer = styled.span`
@@ -188,10 +206,9 @@ const Spacer = styled.span`
 `;
 const FullBox = styled.div`
     margin-top: 30px;
-    margin-bottom:30px;
-    
 `;
 const RentalShopName = styled.div`
+    padding-left:12px;
     margin-top: 10px;
     margin-bottom:10px;
 `;
@@ -204,7 +221,6 @@ const RentalShopName_Text = styled.h1`
     line-height: 24px;
     letter-spacing: -0.333px;
     margin-top: 0 29px;
-    margin-left:20px;
     flex:1;
 `;
 //각 대여소 Box를 가로로 나열하기 위해 Container 컴포넌트를 따로 만들어줬다.
@@ -217,10 +233,18 @@ const RentalShopContainer = styled.div`/*row 배치*/
     width: 100%;
 `;
 const AllLocker = styled.div`
-margin-top: 20px;
-margin-bottom: 20px;
-margin-right: 40px;
+width:100%;
+height:240px;
+
 border-bottom:1.5px solid #000;
+padding:10px 0;
+overflow-y:auto;
+
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+align-items:center;
+gap:4px;
 `;
 
 const RentalShopBox = styled.div`
@@ -238,10 +262,6 @@ background: #D9D9D9;
 const IndexBox = styled.div`
 display: flex;
 flex-direction: row;
-margin-right: 1px;
-margin-left: 10px;
-margin-top: 1px;
-margin-bottom: 10px;
 border-bottom: 1.5px solid #000; /* 줄 */
 `;
 const IndexTopic = styled.h1`
@@ -251,28 +271,24 @@ const IndexTopic = styled.h1`
     color: var(--kakao-logo, #000);
     text-align: center;
     font-family: Pretendard;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: 24px; /* 133.333% */
     letter-spacing: -0.333px;
 `;
-const LentalState = styled.div``;
-
-const IndexLine=styled.line``;
 
 
 const IndexNumber = styled.span`
     display: flex; /* 가로로 나란히 배치 */
-    margin-left: 35px; /* 공백 설정 */
-    margin-right: 25px;
+    justify-content:center;
+    align-items:center;
 `;
 
 const ItemNumber = styled.span`
     display: flex; /* 가로로 나란히 배치 */
-    display: inline-block;
-    margin-left: 35px; /* 공백 설정 */
-    margin-right: 35px;
+    justify-content:center;
+    align-items:center;
 `;
 
 const ID = styled.text``;
@@ -286,17 +302,14 @@ const Delete = styled.span`
     align-items: center;
 `;
 const OneLocker = styled.div`
-    display: flex; /* 가로로 나란히 배치 */
-    align-items: center; /* 세로 정렬을 중앙으로 맞춤 */
-    justify-content: space-between; /* 양쪽 끝으로 배치 */
-    margin-right:10px;
-    margin-left:10px;
-    margin-bottom:10px; 
     width: 250px;
     height: 42px;
     flex-shrink: 0;
     border-radius: 4px;
     background: #F7F7F7;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
 `;
 const DeleteButton = styled.button`
     width: 75px;
@@ -337,11 +350,11 @@ line-height: 24px;
 letter-spacing: -0.333px;
 `;
 const AddButton = styled.button`
-    width:100px;
-    height:20px;
+    align-self:flex-end;
     background-color:yellowgreen;
+    padding:4px 8px;
+    margin-top:12px;
     color:white;
-    margin-left:160px;
 `;
 
 

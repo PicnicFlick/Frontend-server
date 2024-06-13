@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { FlowBox, FlowImg, FlowText, LentalButton, LentalMain, MainBoard } from "./Lental_Root";
 
-import flowThird from "assets/images/flowThird.png";
 import lentalFlow2 from "assets/images/LentalFlow2.png";
 
 function Lental_2() {

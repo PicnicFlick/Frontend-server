@@ -19,7 +19,7 @@ function MyPage() {
 
     const [showModal, setShowModal]=useState(false);
     const [userData, setUserData] = useState({
-        name: '노준호',
+        name: '김주영',
         email: 'asd1873@naver.com',
         warningCnt: '30',
         echoRate: 30

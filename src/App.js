@@ -72,6 +72,8 @@ function App() {
             <Route path="qr" element={<Return_QR/>}/>
             <Route path="refund-loading" element={<RefundLoading/>}/>
             <Route path="1" element={<Return_1/>}/>
+            <Route path="/lental/1" element={<Lental_1 />} />
+
           </Route>
 
           <Route path="auth/login" element = {<Auth_Login/>}/>

@@ -1,56 +1,56 @@
-import styled, { keyframes } from "styled-components"
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
 import { FlowBox, FlowImg, FlowText, LentalButton, LentalMain, MainBoard } from "./Lental_Root";
-import { useNavigate } from "react-router-dom";
 
 import place1 from 'assets/images/Place1.png';
 import lentalFlow1 from 'assets/images/LentalFlow1.png';
 import character from 'assets/images/Character.png';
 import ballon from 'assets/images/Ballon.png';
-import { useLogined } from "hooks/useLogined";
 
+function Lental_1() {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const matId = location.state?.matId;
 
-function Lental_1(){
-    const navigate=useNavigate();
+    useEffect(() => {
+        if (matId) {
+            console.log("QR Result (matId):", matId);
+        } else {
+            console.error("matId is not available");
+        }
+    }, [matId]);
 
     const place = "CU뚝섬르네상스점 옆";
     const cnt = 8;
     const entire = 20;
+
     return (
         <LentalMain>
             <MainBoard>
                 <FlowBox>
-                    <FlowImg 
-                    style={{height:'52px'}}
-                    src={lentalFlow1}/>
+                    <FlowImg style={{ height: '52px' }} src={lentalFlow1} />
                     <FlowSecond>대여 수량 확인</FlowSecond>
                 </FlowBox>
 
                 <AbleBox>
-                    <h1>
-                        {place}
-                    </h1>
-                    <h2>
-                        대여 가능 수량
-                    </h2>
-                    <h3>
-                        <span>{cnt}</span> / {entire}
-                    </h3>
-                    <PlaceImg src={place1}/>
+                    <h1>{place}</h1>
+                    <h2>대여 가능 수량</h2>
+                    <h3><span>{cnt}</span> / {entire}</h3>
+                    <PlaceImg src={place1} />
                 </AbleBox>
 
-
                 <CharacterBox>
-                    <Ballon src={ballon}/>
-                    <Character src={character}/>
+                    <Ballon src={ballon} />
+                    <Character src={character} />
                 </CharacterBox>
-
             </MainBoard>
-                <LentalButton onClick={()=>navigate('/lental/2')}>다음</LentalButton>
+            <LentalButton onClick={() => navigate('/lental/2')}>다음</LentalButton>
         </LentalMain>
-    )
+    );
 }
 
-export default Lental_1
+export default Lental_1;
 
 export const fadein = keyframes`
     from {

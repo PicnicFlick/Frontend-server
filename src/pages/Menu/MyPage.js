@@ -17,7 +17,7 @@ function MyPage() {
     useLogined();
     const navigate=useNavigate();
     const [userData, setUserData] = useState({
-        name: '노준호',
+        name: '김주영',
         email: 'asd1873@naver.com',
         warningCnt: '30',
         echoRate: 30

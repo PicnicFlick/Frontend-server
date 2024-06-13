@@ -13,7 +13,7 @@ function PaymentLoading() {
                     throw new Error("No access token available.");
                 }                console.log(accessToken);
                 const response = await axios.post('http://54.180.208.134:8080/api/v1/payment/ready', {
-                    "matId": 2,
+                    "matId": 1,
                     "totalAmount": 7000
                 },{
                     headers:{

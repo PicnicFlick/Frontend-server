@@ -12,12 +12,12 @@ function KakaoLogin({className})
         <img 
         className={className}
         style={{
+
             width: '336px',
             height: '57.2px',
             cursor: 'pointer',
             objectFit: 'cover',
-            borderRadius: '20px',
-         
+            borderRadius: '20px',         
         }}
         onClick={handleLogin} 
         src={Kakao} 

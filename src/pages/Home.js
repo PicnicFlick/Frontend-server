@@ -93,7 +93,7 @@ function Home() {
 
     const fetchState = async() => {
         const token = sessionStorage.getItem('token');
-        console.log('token',token);
+        //console.log('token',token);
         try{
             const response = await axios.get(
                 `${process.env.REACT_APP_BACK_API}/api/v1/history/recent`,

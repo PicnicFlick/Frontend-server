@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function PaymentLoading() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const matId = location.state?.matId;
 
     useEffect(() => {
         const initiatePayment = async () => {
@@ -11,9 +13,10 @@ function PaymentLoading() {
                 const accessToken = sessionStorage.getItem('token'); // Make sure 'accessToken' is the correct key where the token is stored
                 if (!accessToken) {
                     throw new Error("No access token available.");
-                }                console.log(accessToken);
+                }
+                console.log(accessToken);
                 const response = await axios.post('http://54.180.208.134:8080/api/v1/payment/ready', {
-                    "matId": 1,
+                    "matId": matId,
                     "totalAmount": 7000
                 },{
                     headers:{
@@ -62,11 +65,12 @@ function PaymentLoading() {
         };
 
         handlePaymentSuccess();
-    }, [navigate]);
+    }, [navigate, matId]);
 
     return (
         <div>결제 로딩 페이지 입니다</div>
     );
 }
+
 
 export default PaymentLoading;

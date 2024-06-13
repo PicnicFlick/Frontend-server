@@ -45,7 +45,7 @@ function Lental_1() {
                     <Character src={character} />
                 </CharacterBox>
             </MainBoard>
-            <LentalButton onClick={() => navigate('/lental/2')}>다음</LentalButton>
+            <LentalButton onClick={() => navigate('/lental/2', { state: { matId } })}>다음</LentalButton>
         </LentalMain>
     );
 }

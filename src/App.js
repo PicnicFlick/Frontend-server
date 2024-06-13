@@ -60,7 +60,7 @@ function App() {
           <Route path="lental" element ={<Lental_Root/>}>
             <Route path="start" element={<Lental_Start/>}/>
             <Route path="qr" element={<Lental_QR/>}/>
-            <Route path="1" element={<Lental_1/>}/>
+            <Route path="1" element={<Lental_1 />} />
             <Route path="2" element={<Lental_2/>}/>
             <Route path="payment-loading" element={<PaymentLoading/>}/>
             <Route path="3" element={<Lental_3/>}/>
@@ -71,8 +71,6 @@ function App() {
             <Route path="start" element={<Return_Start/>}/>
             <Route path="qr" element={<Return_QR/>}/>
             <Route path="refund-loading" element={<RefundLoading/>}/>
-            <Route path="1" element={<Return_1/>}/>
-            <Route path="/lental/1" element={<Lental_1 />} />
 
 
             <Route path="final" element={<Return_Final/>}/>

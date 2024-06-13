@@ -1,8 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { FlowBox, FlowImg, FlowText, LentalButton, LentalMain, MainBoard } from "./Lental_Root";
 
+
 import lentalFlow2 from "assets/images/LentalFlow2.png";
+import { Flex } from "pages/Home";
 
 function Lental_2() {
   const navigate = useNavigate();
@@ -84,39 +87,7 @@ function Lental_2() {
             </Element>
 
             <HR />
- {/* <CntBox>
-            <h1>
-              대여 개수
-            </h1>
-            <BtnBox>
-              <CntBtn id = {0} value={1} onClick = {onClick_activeCnt} active = {activesCnt[0]}>
-                1
-              </CntBtn>
-              <CntBtn id = {1} value={2} onClick = {onClick_activeCnt} active = {activesCnt[1]}>
-                2
-              </CntBtn>
-              <CntBtn id = {2} value={3} onClick = {onClick_activeCnt} active = {activesCnt[2]}>
-                3
-              </CntBtn>
-            </BtnBox>
-          </CntBox>
-
-          <CntBox style={{marginBottom:'24px'}}>
-            <h1>
-              대여 시간
-            </h1>
-            <BtnBox>
-              <CntBtn id = {0} value={3} onClick = {onClick_activeTime} active = {activesTime[0]}>
-                3
-              </CntBtn>
-              <CntBtn id = {1} value={6} onClick = {onClick_activeTime} active = {activesTime[1]}>
-                6
-              </CntBtn>
-              <CntBtn id = {2} value={9} onClick = {onClick_activeTime} active = {activesTime[2]}>
-                9
-              </CntBtn>
-            </BtnBox>
-          </CntBox> */}
+ 
 
             <Element>
               <h2>총 결제금액</h2>

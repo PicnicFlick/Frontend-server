@@ -7,7 +7,7 @@ import { useLogined } from "hooks/useLogined";
 
 
 function Lental_Root() {
-    useLogined();
+    //useLogined();
     const navigate = useNavigate();
 
     return (

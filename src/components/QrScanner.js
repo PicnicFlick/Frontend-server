@@ -4,11 +4,12 @@ function QrScanner() {
 
     return (
         <Scanner
-            onResult={(text, result) => {
-                console.log('1');
-                console.log("text, result:", text, result);
-                sessionStorage.setItem('matId',text);
-                window.location.href="1";
+            onScan={(result) => {
+                if(result){
+                    console.log("result.rawValue",result[0].rawValue);
+                    sessionStorage.setItem('matId',result[0].rawValue);
+                    window.location.href="1";
+                }
             }}
             onError={(error) => {
                 console.log('qr스캔 오류 발생 :',error?.message);

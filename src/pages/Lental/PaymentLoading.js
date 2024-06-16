@@ -15,7 +15,7 @@ function PaymentLoading() {
                     throw new Error("No access token available.");
                 }
                 console.log(accessToken);
-                const response = await axios.post('https://picnicflick.shop/api/v1/payment/ready', {
+                const response = await axios.post(`${process.env.REACT_APP_BACK_API}/api/v1/payment/ready`, {
                     "matId": matId,
                     "totalAmount": 7000
                 },{

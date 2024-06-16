@@ -25,11 +25,11 @@ function RefundLoading() {
                         console.log("next_redirect_pc_url : " + next_redirect_pc_url);
                         window.location.href = next_redirect_pc_url;
                     } else {
-                        throw new Error('No redirect URL provided');
+                        //throw new Error('No redirect URL provided');
                     }
                 })
                 .catch(error => {
-                    console.error('Refund initiation failed:', error);
+                    //console.error('Refund initiation failed:', error);
                     navigate('/return/start'); 
                 });
                 console.log("Response Data:", response.data);//****
@@ -41,7 +41,7 @@ function RefundLoading() {
                     console.log("next_redirect_pc_url : " + next_redirect_pc_url);
                     window.location.href = next_redirect_pc_url;
                 } else {
-                    throw new Error('No redirect URL provided');
+                    //throw new Error('No redirect URL provided');
                 }
             } catch (error) {
                 console.error('Payment initiation failed:', error);

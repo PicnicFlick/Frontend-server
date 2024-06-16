@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function RefundLoading() {
     const navigate = useNavigate();
+    location = useLocation();
     const matId = location.state?.matId;
 
     useEffect(() => {

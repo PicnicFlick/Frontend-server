@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 function RefundLoading() {
     const navigate = useNavigate();
-    location = useLocation();
+    const location = useLocation();
     const matId = location.state?.matId;
 
     useEffect(() => {

@@ -9,6 +9,17 @@ import axios from "axios";
 
 function Return_Final() {
     const navigate=useNavigate();
+    const matId = sessionStorage.getItem('matId');
+
+    useEffect(() => {
+        if (matId) {
+            console.log("QR return (matId):", matId);
+            sessionStorage.removeItem('matId');
+        } else {
+            console.error("matId is not available");
+        }
+    }, [matId]);
+
     const initiateRefund = async () => {
         try {
             const accessToken = sessionStorage.getItem('token'); 
@@ -16,7 +27,7 @@ function Return_Final() {
                 throw new Error("No access token available.");
             }                console.log(accessToken);
             const response = await axios.post(`${process.env.REACT_APP_BACK_API}/api/v1/payment/refund`, {
-                "matId": 2
+                "matId": matId
             },{
                 headers:{
                     Authorization: `${accessToken}`

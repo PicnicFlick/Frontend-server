@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function RefundLoading() {
     const navigate = useNavigate();
+    const matId = location.state?.matId;
 
     useEffect(() => {
         const initiateRefund = async () => {
@@ -13,7 +14,7 @@ function RefundLoading() {
                     throw new Error("No access token available.");
                 }                console.log(accessToken);
                 const response = await axios.post(`${process.env.REACT_APP_BACK_API}/api/v1/payment/refund`, {
-                    "matId": 2
+                    "matId": matId,
                 },{
                     headers:{
                         Authorization: `${accessToken}`
@@ -61,7 +62,7 @@ function RefundLoading() {
         };
 
         handleRefundSuccess();
-    }, [navigate]);
+    }, [navigate, matId]);
 
     return (
         <div>환불 로딩 페이지 입니다</div>

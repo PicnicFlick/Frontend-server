@@ -10,7 +10,7 @@ function Lental_QR() {
                 대여장소에 부착되어있는 QR코드를
                 <br />아래의 화면에 맞게 촬영해주세요
             </h1>
-            <QrScanner/>
+            <QrScanner mode = 'lental'/>
         </QrDiv>
     )
 }

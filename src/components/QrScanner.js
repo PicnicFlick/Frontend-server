@@ -1,6 +1,6 @@
 import { Scanner } from "@yudiel/react-qr-scanner";
 
-function QrScanner() {
+function QrScanner({mode}) {
 
     return (
         <Scanner
@@ -8,7 +8,10 @@ function QrScanner() {
                 if(result){
                     console.log("result.rawValue",result[0].rawValue);
                     sessionStorage.setItem('matId',result[0].rawValue);
-                    window.location.href="1";
+                    if(mode==='lental')
+                        window.location.href="1";
+                    else
+                        window.location.href="final";
                 }
             }}
             onError={(error) => {

@@ -29,7 +29,7 @@ function RefundLoading() {
                 })
                 .catch(error => {
                     console.error('Refund initiation failed:', error);
-                    navigate('/return/1'); 
+                    navigate('/return/start'); 
                 });
                 console.log("Response Data:", response.data);//****
                 console.log("Response Headers:", response.headers);
@@ -44,7 +44,7 @@ function RefundLoading() {
                 }
             } catch (error) {
                 console.error('Payment initiation failed:', error);
-                navigate('/return/1'); 
+                navigate('/return/start'); 
             }
         };
 
@@ -54,7 +54,7 @@ function RefundLoading() {
             const pgToken = urlParams.get('pg_token');
             if (pgToken) {
                 console.log("Refund success with pg_token:", pgToken);
-                navigate('/return/1', { state: { pgToken: pgToken } });
+                navigate('/return/final', { state: { pgToken: pgToken } });
             } else {
                 initiateRefund();
             }

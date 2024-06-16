@@ -45,7 +45,7 @@ function RefundLoading() {
                     //throw new Error('No redirect URL provided');
                 }
             } catch (error) {
-                console.error('Payment initiation failed:', error);
+                //console.error('Payment initiation failed:', error);
                 navigate('/return/start'); 
             }
         };

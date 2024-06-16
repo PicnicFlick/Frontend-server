@@ -56,7 +56,7 @@ function Return_Final() {
                 //throw new Error('No redirect URL provided');
             }
         } catch (error) {
-            alert('Payment initiation failed:' + error);
+            //alert('Payment initiation failed:' + error);
         }
     };
 

@@ -2,8 +2,7 @@
 ## 🙆🏻‍♀️ 환경오염 없이, 간편하게 돗자리 사용하자!   
 돗자리를 편리하게 대여하고 반납하여 돗자리 쓰레기를 감소시킬 수 있습니다.
 
-<img width="317" alt="KakaoTalk_Photo_2024-05-31-21-44-57" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/309e0b4a-8bb4-4732-a3d8-f851ef94445d">
-
+<img width="248" alt="스크린샷 2024-06-23 오후 10 55 52" src="https://github.com/Picnicflick/Frontend-server/assets/98169691/004ea017-625d-4a3f-82a2-1946e5470e22">
 <br>
 
 

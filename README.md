@@ -57,7 +57,6 @@
 ## 아키텍처
 ![architecture drawio](https://github.com/Ficnicflick/Frontend-server/assets/129048011/916b3feb-98f0-4603-837d-f32f5c484eca)
 <br>
-<img width="828" alt="image" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/c7a684f2-8260-4720-91b5-8c3a13e2ba54">
 
 
 ## 🔖 API 명세서

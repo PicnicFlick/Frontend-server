@@ -19,6 +19,14 @@
 <br>
 
 ---
+<img width="788" alt="image" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/5323188f-6c61-4894-978d-2b00569c2e52">
+<img width="790" alt="image" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/8838ef22-987c-49f6-b4bf-4fe894c9f6dd">
+<img width="777" alt="image" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/c6516831-7867-4983-a0ae-a9beb94f51c3">
+<img width="787" alt="image" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/dc394af7-1d3d-4b78-8cba-40150f582a8e">
+<img width="787" alt="image" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/35af51eb-fa02-4d50-9133-62a419a1baa2">
+<img width="781" alt="image" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/e8db3063-42ee-4096-a5c5-67a357307228">
+<img width="787" alt="image" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/0b00991d-78a3-49b6-b341-1a6debee17bf">
+<img width="785" alt="image" src="https://github.com/Ficnicflick/Frontend-server/assets/102804323/37f551df-a291-40aa-909b-0a27f06ecdc8">
 
 <br>
 
